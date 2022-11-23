@@ -2,6 +2,20 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.5'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'com.google.cloud.tools.jib' version '3.2.1'
+}
+
+jib {
+	from {
+		image = "openjdk:11-jre-slim"
+	}
+	to {
+		image = "deca3248/cokkiri-backend"
+		tags = ["latest"]
+	}
+	container {
+		jvmFlags = ["-Xms128m", "-Xmx128m"]
+	}
 }
 
 group = 'com.techeer'
