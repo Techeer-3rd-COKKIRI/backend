@@ -64,3 +64,5 @@ out/
 .DS_Store
 
 application.properties
+
+.env
