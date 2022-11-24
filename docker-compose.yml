@@ -1,0 +1,23 @@
+version: '3'
+services:
+  postgres-db:
+    image: postgres
+    restart: always
+    container_name: postgres # 컨테이너 이름 설정
+    environment:
+      POSTGRES_USER: "${DB_USER_ID}"
+      POSTGRES_PASSWORD: "${DB_USER_PASSWORD}"
+    #    volumes:
+    #      - ${POSTGRES_HOME_DIR}/data/:/var/lib/postgresql/data
+
+    ports:
+      - 5432:5432
+
+  spring:
+    container_name: spring_boot
+    image: deca3248/cokkiri-backend:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres-db
+#    volumes:   프론트랑 합친 후에 볼륨 설정 예정
