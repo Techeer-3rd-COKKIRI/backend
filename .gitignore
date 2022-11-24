@@ -63,6 +63,6 @@ out/
 ### Mac ###
 .DS_Store
 
-application.properties
+application.yml
 
 .env
