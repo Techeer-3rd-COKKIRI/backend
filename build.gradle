@@ -9,9 +9,17 @@ plugins {
 jib {
 	from {
 		image = "openjdk:11-jre-slim"
+		auth {
+			username = project.DOCKER_ID
+			password = project.DOCKER_PASSWORD
+		}
 	}
 	to {
-		image = "deca3248/cokkiri-backend"
+		image = project.DOCKER_ID + "/" + project.DOCKER_IMAGE_NAME
+		auth {
+			username = project.DOCKER_ID
+			password = project.DOCKER_PASSWORD
+		}
 		tags = ["latest"]
 	}
 	container {
