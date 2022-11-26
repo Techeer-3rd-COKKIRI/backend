@@ -1,0 +1,3 @@
+[submodule "src/main/resources/security"]
+	path = src/main/resources/security
+	url = https://github.com/Techeer-3rd-COKKIRI/backend-security.git
