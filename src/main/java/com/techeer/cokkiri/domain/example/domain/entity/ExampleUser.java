@@ -1,9 +1,8 @@
 package com.techeer.cokkiri.domain.example.domain.entity;
 
 import com.techeer.cokkiri.global.domain.BaseEntity;
-import lombok.*;
-
 import javax.persistence.*;
+import lombok.*;
 
 @Getter
 @Entity
