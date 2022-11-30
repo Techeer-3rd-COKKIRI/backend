@@ -2,8 +2,6 @@ package com.techeer.cokkiri.domain.example.domain.entity;
 
 import com.techeer.cokkiri.global.domain.BaseEntity;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.*;
 import lombok.*;
 
@@ -41,7 +39,7 @@ public class Study extends BaseEntity {
 
   @Column(name = "FINISH_DATE", nullable = false)
   private Date finishDate;
-  
+
   @Builder
   public Study(
       Long managerId,
