@@ -6,7 +6,6 @@ import lombok.*;
 
 @Getter
 @Entity
-@AllArgsConstructor
 // JPA는 기본 생성자가 필요함. but public이면 아무데서나 호출 가능
 // -> 접근 제한자를 protected로 설정
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -22,14 +21,13 @@ public class ExampleUser extends BaseEntity {
 
   // 모든 연관관계는 지연로딩으로 설정
   // 즉시로딩은 예측이 어렵고, JPQL실행시 n+1이슈 발생 가능
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "DEPARTMENT", nullable = false)
-  private Department department;
+  // @ManyToOne(fetch = FetchType.LAZY)
+  // @JoinColumn(name = "DEPARTMENT", nullable = false)
+  // private Department department;
 
   @Builder
-  public ExampleUser(String name, Department department) {
+  public ExampleUser(String name) {
     this.name = name;
-    this.department = department;
     super.isDeleted = false;
   }
 }
