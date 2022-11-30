@@ -42,11 +42,11 @@ public class Study extends BaseEntity {
     private Date finishDate;
 
     @OneToMany(mappedBy = "STUDY")
-    @JoinColumn(name = "STUDY_TAG", nullable = false)
+    @Column(name = "STUDY_TAG", nullable = false)
     private StudyTag studyTag;
 
     @OneToMany(mappedBy = "STUDY")
-    @JoinColumn(name = "USER_STUDY", nullable = false)
+    @Column(name = "USER_STUDY", nullable = false)
     private StudyTag studyTag;
 
     @Builder
