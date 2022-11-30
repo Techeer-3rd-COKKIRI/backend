@@ -2,6 +2,8 @@ package com.techeer.cokkiri.domain.example.domain.entity;
 
 import com.techeer.cokkiri.global.domain.BaseEntity;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 import lombok.*;
 
@@ -42,18 +44,17 @@ public class Study extends BaseEntity {
 
     @OneToMany(mappedBy = "STUDY")
     @Column(name = "STUDY_TAG", nullable = false)
-    private StudyTag studyTag;
+    private List<StudyTag> studyTags = new ArrayList<>();
 
     @OneToMany(mappedBy = "STUDY")
     @Column(name = "USER_STUDY", nullable = false)
-    private StudyTag studyTag;
+    private List<User> users = new ArrayList<>();
 
   @Builder
   public Study(
       Long managerId,
       String studyName,
       String studyPassword,
-      String studyTag,
       Integer userLimit,
       String introduction,
       Integer studyCycle,
