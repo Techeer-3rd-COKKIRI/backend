@@ -41,13 +41,7 @@ public class Study extends BaseEntity {
 
   @Column(name = "FINISH_DATE", nullable = false)
   private Date finishDate;
-
-    @OneToMany(mappedBy = "study")
-    private List<Comment> comments = new ArrayList<>();
-
-    @OneToMany(mappedBy = "study")
-    private List<UserStudy> userStudies = new ArrayList<>();
-
+  
   @Builder
   public Study(
       Long managerId,
