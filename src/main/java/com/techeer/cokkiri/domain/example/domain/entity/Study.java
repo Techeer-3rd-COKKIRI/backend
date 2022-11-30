@@ -44,11 +44,11 @@ public class Study extends BaseEntity {
 
     @OneToMany(mappedBy = "STUDY")
     @Column(name = "STUDY_TAG", nullable = false)
-    private StudyTag studyTag;
+    private List<StudyTag> studyTags = new ArrayList<>();
 
     @OneToMany(mappedBy = "STUDY")
     @Column(name = "USER_STUDY", nullable = false)
-    private StudyTag studyTag;
+    private List<User> users = new ArrayList<>();
 
   @Builder
   public Study(
