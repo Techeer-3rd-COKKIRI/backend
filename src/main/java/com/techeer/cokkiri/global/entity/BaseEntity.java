@@ -1,4 +1,4 @@
-package com.techeer.cokkiri.global.domain;
+package com.techeer.cokkiri.global.entity;
 
 import java.time.LocalDateTime;
 import javax.persistence.Column;
