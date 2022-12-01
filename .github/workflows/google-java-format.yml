@@ -1,5 +1,5 @@
 name: google-java-format # 워크플로우의 이름
-on: [ push, pull_request ] # 깃 저장소의 push, pull_request 이벤트에 의해 트리거된다.
+on: [ pull_request ] # 깃 저장소의 push, pull_request 이벤트에 의해 트리거된다.
 jobs:
   formatting:
     runs-on: ubuntu-latest # 워크플로우의 이름
