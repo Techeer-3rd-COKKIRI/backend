@@ -1,8 +1,10 @@
 package com.techeer.cokkiri.domain.example.domain.entity;
 
-import com.techeer.cokkiri.global.domain.BaseEntity;
+
 import java.sql.Date;
 import javax.persistence.*;
+
+import com.techeer.cokkiri.global.entity.BaseEntity;
 import lombok.*;
 
 @Getter
@@ -59,6 +61,5 @@ public class Study extends BaseEntity {
     this.studyCycle = studyCycle;
     this.startDate = startDate;
     this.finishDate = finishDate;
-    super.isDeleted = false;
   }
 }
