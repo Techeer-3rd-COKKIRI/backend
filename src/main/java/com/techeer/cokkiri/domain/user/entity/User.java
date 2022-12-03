@@ -1,8 +1,9 @@
 package com.techeer.cokkiri.domain.user.entity;
 
-import com.techeer.cokkiri.global.domain.BaseEntity;
 import java.util.ArrayList;
 import javax.persistence.*;
+
+import com.techeer.cokkiri.global.entity.BaseEntity;
 import lombok.*;
 
 @Getter

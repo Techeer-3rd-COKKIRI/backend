@@ -1,7 +1,7 @@
 package com.techeer.cokkiri.domain.user.entity;
 
-import com.techeer.cokkiri.global.domain.BaseEntity;
 import javax.persistence.*;
+import com.techeer.cokkiri.global.entity.BaseEntity;
 import lombok.*;
 
 @Getter
@@ -15,7 +15,7 @@ public class UserStudy extends BaseEntity {
   private Long id;
 
   @Column(name = "IS_END", columnDefinition = "boolean default false")
-  private boolean isEnd;
+  private Boolean isEnd;
 
   // User와 다대다를 N:1로 나눠서 구현
   @ManyToOne(fetch = FetchType.LAZY)
@@ -28,7 +28,7 @@ public class UserStudy extends BaseEntity {
   private Study study;
 
   @Builder
-  private UserStudy(boolean isEnd) {
+  private UserStudy(Boolean isEnd) {
     this.isEnd = isEnd;
   }
 }
