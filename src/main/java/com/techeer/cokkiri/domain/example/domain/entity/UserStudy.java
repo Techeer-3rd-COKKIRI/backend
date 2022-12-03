@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "USER_STUDY")
 public class UserStudy extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +16,7 @@ public class UserStudy extends BaseEntity {
     private Long id;
 
     @Column(name = "IS_END", columnDefinition = "boolean default false")
-    private boolean is_end;
+    private boolean isEnd;
 
     // User와 다대다를 N:1로 나눠서 구현
     @ManyToOne(fetch = FetchType.LAZY)
@@ -30,9 +29,7 @@ public class UserStudy extends BaseEntity {
     private Study study;
 
     @Builder
-    public UserStudy(boolean is_end) {
-        this.is_end = is_end;
-
-        super.isDeleted = false;
+    private UserStudy(boolean isEnd) {
+        this.isEnd = isEnd;
     }
 }
