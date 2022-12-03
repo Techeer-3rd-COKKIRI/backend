@@ -1,4 +1,4 @@
-package com.techeer.cokkiri.domain.example.domain.entity;
+package com.techeer.cokkiri.domain.user.entity;
 
 import com.techeer.cokkiri.global.domain.BaseEntity;
 import javax.persistence.*;
