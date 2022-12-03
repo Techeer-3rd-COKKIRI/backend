@@ -40,6 +40,7 @@ public class Study extends BaseEntity {
   @Column(name = "FINISH_DATE", nullable = false)
   private Date finishDate;
   
+
   @Builder
   public Study(
       Long managerId,
