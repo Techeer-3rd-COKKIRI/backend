@@ -10,7 +10,6 @@ import java.util.ArrayList;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "USER")
 public class User extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,19 +17,19 @@ public class User extends BaseEntity {
     private Long id;
 
     // 회원 아이디
-    @Column(name = "USERNAME", nullable = false, length = 30)
+    @Column(nullable = false, length = 30)
     private String username;
 
-    @Column(name = "NICKNAME", nullable = false, length = 30)
+    @Column(nullable = false, length = 30)
     private String nickname;
 
-    @Column(name = "USER_PASSWORD", nullable = false, length = 255)
+    @Column(nullable = false, length = 255)
     private String password;
 
-    @Column(name = "USER_IMAGE_URL", length = 255)
+    @Column(length = 255)
     private String imageUrl;
 
-    @Column(name = "USER_BIO", length = 255)
+    @Column(length = 255)
     private String bio;
 
 
@@ -45,13 +44,11 @@ public class User extends BaseEntity {
 
 
     @Builder
-    public User(String username, String nickname, String password, String imageUrl, String bio) {
+    private User(String username, String nickname, String password, String imageUrl, String bio) {
         this.username = username;
         this.nickname = nickname;
         this.password = password;
         this.imageUrl = imageUrl;
         this.bio = bio;
-
-        super.isDeleted = false;
     }
 }
