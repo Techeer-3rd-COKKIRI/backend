@@ -2,6 +2,8 @@ package com.techeer.cokkiri.domain.example.domain.entity;
 
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.*;
 
 import com.techeer.cokkiri.global.entity.BaseEntity;
@@ -37,10 +39,10 @@ public class Study extends BaseEntity {
   private Integer studyCycle;
 
   @Column(name = "START_DATE", nullable = false)
-  private Date startDate;
+  private LocalDate startDate;
 
   @Column(name = "FINISH_DATE", nullable = false)
-  private Date finishDate;
+  private LocalDate finishDate;
   
 
   @Builder
@@ -51,8 +53,8 @@ public class Study extends BaseEntity {
       Integer userLimit,
       String introduction,
       Integer studyCycle,
-      Date startDate,
-      Date finishDate) {
+      LocalDate startDate,
+      LocalDate finishDate) {
     this.managerId = managerId;
     this.studyName = studyName;
     this.studyPassword = studyPassword;
