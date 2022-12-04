@@ -1,34 +1,33 @@
 package com.techeer.cokkiri.domain.example.domain.entity;
 
-import com.techeer.cokkiri.global.domain.BaseEntity;
+import com.techeer.cokkiri.global.entity.BaseEntity;
 import javax.persistence.*;
 import lombok.*;
 
 @Getter
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserStudy extends BaseEntity {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "USER_STUDY_ID")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @Column(name = "user_study_id")
   private Long id;
 
-  @Column(name = "IS_END", columnDefinition = "boolean default false")
-  private boolean isEnd;
+  @Column(columnDefinition = "boolean default false")
+  private Boolean isEnd;
 
   // User와 다대다를 N:1로 나눠서 구현
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "USER_ID", insertable = false, updatable = false, nullable = false)
+  @JoinColumn(name = "user_id", insertable = false, updatable = false, nullable = false)
   private User user;
 
   // Study와 다대다를 N:1로 나눠서 구현
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "STUDY_ID", insertable = false, updatable = false, nullable = false)
+  @JoinColumn(name = "study_id", insertable = false, updatable = false, nullable = false)
   private Study study;
 
   @Builder
-  private UserStudy(boolean isEnd) {
+  private UserStudy(Boolean isEnd) {
     this.isEnd = isEnd;
   }
 }
