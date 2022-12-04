@@ -11,11 +11,12 @@ import org.hibernate.annotations.DynamicInsert;
 @DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(callSuper = true)
+@Table(name = "comments")
 public class Comment extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "COMMENT_ID")
+    @Column(name = "comment_id")
     private Long id;
 
     @Column(nullable = false)
@@ -24,40 +25,34 @@ public class Comment extends BaseEntity {
     @Column(nullable = false)
     private Long studyId;
 
-    @Column(name = "COMMENT_ADDRESS", length = 255, nullable = false)
+    @Column(length = 255, nullable = false)
     private String commentAddress;
 
-    @Column(name = "STUDY_WEEK")
     private Integer studyWeek;
 
-    @Column(name = "LIKE", columnDefinition = "0")
+    @Column(columnDefinition = "int default 0")
     private Integer likeCount;
 
-    @Column(name = "DISLIKE", columnDefinition = "0")
+    @Column(columnDefinition = "int default 0")
     private Integer dislikeCount;
 
-    @Column(name = "IS_NOTICED")
     private Boolean isNoticed;
 
- /* @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "STUDY_ID", nullable = false)
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "study_id", nullable = false)
   private Study study;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "USER_ID", nullable = false)
-  private User user;*/
+  @JoinColumn(name = "user_id", nullable = false)
+  private User user;
 
     @Builder
     private Comment(
-            Long userId,
-            Long studyId,
             String commentAddress,
             Integer studyWeek,
             Integer likeCount,
             Integer dislikeCount,
             Boolean isNoticed) {
-        this.userId = userId;
-        this.studyId = studyId;
         this.commentAddress = commentAddress;
         this.studyWeek = studyWeek;
         this.likeCount = likeCount;
