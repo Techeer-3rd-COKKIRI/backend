@@ -1,7 +1,6 @@
 package com.techeer.cokkiri.domain.user.entity;
 
 import com.techeer.cokkiri.domain.comment.entity.Comment;
-import com.techeer.cokkiri.domain.study.entity.Study;
 import com.techeer.cokkiri.global.entity.BaseEntity;
 import java.util.ArrayList;
 import java.util.List;
