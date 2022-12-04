@@ -1,11 +1,13 @@
-package com.techeer.cokkiri.domain.example.domain.entity;
+package com.techeer.cokkiri.domain.user.entity;
 
-import com.techeer.cokkiri.global.entity.BaseEntity;
 import javax.persistence.*;
+import com.techeer.cokkiri.global.entity.BaseEntity;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
 
 @Getter
 @Entity
+@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserStudy extends BaseEntity {
   @Id
