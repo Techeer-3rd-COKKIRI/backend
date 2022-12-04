@@ -1,7 +1,7 @@
 package com.techeer.cokkiri.domain.user.entity;
 
-import javax.persistence.*;
 import com.techeer.cokkiri.global.entity.BaseEntity;
+import javax.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 
