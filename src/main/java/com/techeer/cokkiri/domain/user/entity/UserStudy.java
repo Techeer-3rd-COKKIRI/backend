@@ -3,28 +3,29 @@ package com.techeer.cokkiri.domain.user.entity;
 import javax.persistence.*;
 import com.techeer.cokkiri.global.entity.BaseEntity;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
 
 @Getter
 @Entity
-@AllArgsConstructor
+@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserStudy extends BaseEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "USER_STUDY_ID")
+  @Column(name = "user_study_id")
   private Long id;
 
-  @Column(name = "IS_END", columnDefinition = "boolean default false")
+  @Column(columnDefinition = "boolean default false")
   private Boolean isEnd;
 
   // User와 다대다를 N:1로 나눠서 구현
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "USER_ID", insertable = false, updatable = false, nullable = false)
+  @JoinColumn(name = "user_id", insertable = false, updatable = false, nullable = false)
   private User user;
 
   // Study와 다대다를 N:1로 나눠서 구현
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "STUDY_ID", insertable = false, updatable = false, nullable = false)
+  @JoinColumn(name = "study_id", insertable = false, updatable = false, nullable = false)
   private Study study;
 
   @Builder

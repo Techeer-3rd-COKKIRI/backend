@@ -8,12 +8,12 @@ import lombok.*;
 
 @Getter
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "USERS")
 public class User extends BaseEntity {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "USER_ID")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @Column(name = "user_id")
   private Long id;
 
   // 회원 아이디
