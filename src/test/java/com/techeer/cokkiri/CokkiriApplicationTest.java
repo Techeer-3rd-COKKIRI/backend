@@ -10,6 +10,8 @@ import org.springframework.test.annotation.Rollback;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 public class CokkiriApplicationTest {
 
@@ -20,13 +22,12 @@ public class CokkiriApplicationTest {
   void contextLoads() {}
 
   @Test
-  @Rollback(false)
   void addStudy() {
     LocalDate startDate = LocalDate.of(2022, 6, 19);
     LocalDate finishDate = LocalDate.of(2022, 12, 19);
 
     Study study = Study.builder()
-            .managerId(Long.valueOf(123))
+            .managerId(123L)
             .studyName("cokkiri")
             .studyPassword("password")
             .userLimit(7)
@@ -36,8 +37,7 @@ public class CokkiriApplicationTest {
             .finishDate(finishDate)
             .build();
 
-//    테스트 코드 작성 중
-//    studyRepository.save(study);
-//    assertEquals(study.getId(), )
+    Study savedStudy = studyRepository.save(study);
+    assertEquals("cokkiri",(studyRepository.findById(savedStudy.getId())).get().getStudyName());
   }
 }
