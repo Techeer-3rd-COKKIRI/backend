@@ -1,8 +1,7 @@
 package com.techeer.cokkiri.domain.comment.domain.entity;
 
-import javax.persistence.*;
-
 import com.techeer.cokkiri.global.entity.BaseEntity;
+import javax.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 
@@ -14,29 +13,29 @@ import org.hibernate.annotations.DynamicInsert;
 @Table(name = "comments")
 public class Comment extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "comment_id")
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @Column(name = "comment_id")
+  private Long id;
 
-    @Column(nullable = false)
-    private Long userId;
+  @Column(nullable = false)
+  private Long userId;
 
-    @Column(nullable = false)
-    private Long studyId;
+  @Column(nullable = false)
+  private Long studyId;
 
-    @Column(length = 255, nullable = false)
-    private String commentAddress;
+  @Column(length = 255, nullable = false)
+  private String commentAddress;
 
-    private Integer studyWeek;
+  private Integer studyWeek;
 
-    @Column(columnDefinition = "int default 0")
-    private Integer likeCount;
+  @Column(columnDefinition = "int default 0")
+  private Integer likeCount;
 
-    @Column(columnDefinition = "int default 0")
-    private Integer dislikeCount;
+  @Column(columnDefinition = "int default 0")
+  private Integer dislikeCount;
 
-    private Boolean isNoticed;
+  private Boolean isNoticed;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "study_id", nullable = false)
@@ -46,17 +45,17 @@ public class Comment extends BaseEntity {
   @JoinColumn(name = "user_id", nullable = false)
   private User user;
 
-    @Builder
-    private Comment(
-            String commentAddress,
-            Integer studyWeek,
-            Integer likeCount,
-            Integer dislikeCount,
-            Boolean isNoticed) {
-        this.commentAddress = commentAddress;
-        this.studyWeek = studyWeek;
-        this.likeCount = likeCount;
-        this.dislikeCount = dislikeCount;
-        this.isNoticed = isNoticed;
-    }
+  @Builder
+  private Comment(
+      String commentAddress,
+      Integer studyWeek,
+      Integer likeCount,
+      Integer dislikeCount,
+      Boolean isNoticed) {
+    this.commentAddress = commentAddress;
+    this.studyWeek = studyWeek;
+    this.likeCount = likeCount;
+    this.dislikeCount = dislikeCount;
+    this.isNoticed = isNoticed;
+  }
 }
