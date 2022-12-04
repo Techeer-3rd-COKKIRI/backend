@@ -1,7 +1,10 @@
 package com.techeer.cokkiri.domain.user.entity;
 
+import com.techeer.cokkiri.domain.comment.entity.Comment;
+import com.techeer.cokkiri.domain.study.entity.Study;
 import com.techeer.cokkiri.global.entity.BaseEntity;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 import lombok.*;
 
@@ -33,11 +36,11 @@ public class User extends BaseEntity {
 
   // Study와의 다대다 관계 -> 1:N으로 나눠서 구현
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<Study> study = new ArrayList<>();
+  private List<UserStudy> studies = new ArrayList<>();
 
   // Command과의 일대다 관계
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<Command> command = new ArrayList<>();
+  private List<Comment> comments = new ArrayList<>();
 
   @Builder
   private User(String username, String nickname, String password, String imageUrl, String bio) {

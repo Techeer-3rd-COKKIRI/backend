@@ -1,6 +1,7 @@
 package com.techeer.cokkiri.domain.comment.entity;
 
 import com.techeer.cokkiri.domain.study.entity.Study;
+import com.techeer.cokkiri.domain.user.entity.User;
 import com.techeer.cokkiri.global.entity.BaseEntity;
 import javax.persistence.*;
 import lombok.*;
@@ -18,12 +19,6 @@ public class Comment extends BaseEntity {
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   @Column(name = "comment_id")
   private Long id;
-
-  @Column(nullable = false)
-  private Long userId;
-
-  @Column(nullable = false)
-  private Long studyId;
 
   @Column(length = 255, nullable = false)
   private String commentAddress;
