@@ -24,7 +24,5 @@ services:
       - postgresql
     environment:
       SPRING_DATASOURCE_URL: ${POSTGRES_URL}
-      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
-      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
 #    volumes:   프론트랑 합친 후에 볼륨 설정 예정
