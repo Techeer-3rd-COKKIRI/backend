@@ -10,13 +10,21 @@ import java.util.stream.Collectors;
 public class StudyMapper {
     public CreateStudyResponse toDto(Study study) {
         return CreateStudyResponse.builder()
-
+                .id(study.getId())
+                .studyName(study.getStudyName())
                 .build();
     }
 
     public Study toEntity(CreateStudyRequest dto) {
         Study study = Study.builder()
-
+                .manager(dto.getManager())
+                .studyName(dto.getStudyName())
+                .studyPassword(dto.getStudyPassword())
+                .userLimit(dto.getUserLimit())
+                .introduction(dto.getIntroduction())
+                .studyCycle(dto.getStudyCycle())
+                .startDate(dto.getStartDate())
+                .finishDate(dto.getFinishDate())
                 .build();
 
         return study;
