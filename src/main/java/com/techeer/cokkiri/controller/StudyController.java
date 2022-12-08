@@ -1,6 +1,5 @@
 package com.techeer.cokkiri.controller;
 
-import com.techeer.cokkiri.domain.study.entity.Study;
 import com.techeer.cokkiri.dto.request.CreateStudyRequest;
 import com.techeer.cokkiri.dto.response.CreateStudyResponse;
 import com.techeer.cokkiri.mapper.StudyMapper;
@@ -14,12 +13,13 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class StudyController {
 
-    private final StudyService studyService;
-    private final StudyMapper studyMapper;
+  private final StudyService studyService;
+  private final StudyMapper studyMapper;
 
-    @PostMapping
-    public ResponseEntity<CreateStudyResponse> createStudy(@RequestBody CreateStudyRequest requestDto) {
-        CreateStudyResponse responseDto = studyMapper.toDto(studyService.createStudy(requestDto));
-        return ResponseEntity.ok(responseDto);
-    }
+  @PostMapping
+  public ResponseEntity<CreateStudyResponse> createStudy(
+      @RequestBody CreateStudyRequest requestDto) {
+    CreateStudyResponse responseDto = studyMapper.toDto(studyService.createStudy(requestDto));
+    return ResponseEntity.ok(responseDto);
+  }
 }

@@ -6,6 +6,6 @@ import lombok.Builder;
 @Builder
 @AllArgsConstructor
 public class CreateStudyResponse {
-    private Long id;
-    private String studyName;
+  private Long id;
+  private String studyName;
 }
