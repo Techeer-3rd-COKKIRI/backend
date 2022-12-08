@@ -1,6 +1,9 @@
 package com.techeer.cokkiri.global.result;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 public class ResultResponse {
@@ -22,4 +25,6 @@ public class ResultResponse {
     this.message = resultCode.getMessage();
     this.data = data;
   }
+
+
 }
