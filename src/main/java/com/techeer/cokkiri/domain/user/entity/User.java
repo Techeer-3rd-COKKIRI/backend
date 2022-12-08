@@ -18,7 +18,7 @@ public class User extends BaseEntity {
   private Long id;
 
   // 회원 아이디
-  @Column(nullable = false, length = 30)
+  @Column(nullable = false, unique = true, length = 30)
   private String username;
 
   @Column(nullable = false, length = 30)
