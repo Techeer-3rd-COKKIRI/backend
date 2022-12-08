@@ -1,5 +1,11 @@
 package com.techeer.cokkiri.dto.response;
 
-public class CreateStudyResponse {
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
+@Builder
+@AllArgsConstructor
+public class CreateStudyResponse {
+    private Long id;
+    private String studyName;
 }
