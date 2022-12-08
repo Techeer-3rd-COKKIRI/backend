@@ -9,13 +9,12 @@ import com.techeer.cokkiri.domain.user.exception.UserDuplicatedException;
 import com.techeer.cokkiri.domain.user.service.UserService;
 import com.techeer.cokkiri.global.result.ResultResponse;
 import io.swagger.annotations.Api;
+import javax.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @Api(tags = "회원 인증 API")
 @RestController
@@ -26,7 +25,6 @@ public class UserController {
 
   private final UserService userService;
   private final PasswordEncoder passwordEncoder;
-
 
   @PostMapping
   public ResponseEntity<ResultResponse> registration(@RequestBody @Valid UserDto userDto) {
