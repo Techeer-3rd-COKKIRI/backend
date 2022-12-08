@@ -1,10 +1,11 @@
 package com.techeer.cokkiri.domain.user.dto;
 
 import com.techeer.cokkiri.domain.user.entity.User;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Getter
 @Builder
