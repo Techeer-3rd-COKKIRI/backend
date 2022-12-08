@@ -23,6 +23,9 @@ public class Comment extends BaseEntity {
   @Column(length = 255, nullable = false)
   private String commentAddress;
 
+  @Column(nullable = false)
+  private String content;
+
   private Integer studyWeek;
 
   @Column(columnDefinition = "int default 0")
@@ -44,11 +47,13 @@ public class Comment extends BaseEntity {
   @Builder
   private Comment(
       String commentAddress,
+      String content,
       Integer studyWeek,
       Integer likeCount,
       Integer dislikeCount,
       Boolean isNoticed) {
     this.commentAddress = commentAddress;
+    this.content = content;
     this.studyWeek = studyWeek;
     this.likeCount = likeCount;
     this.dislikeCount = dislikeCount;
