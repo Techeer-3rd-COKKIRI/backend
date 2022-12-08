@@ -10,18 +10,16 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class CommentService {
 
-    private final CommentRepository commentRepository;
+  private final CommentRepository commentRepository;
 
-    public Comment registerComment(CommentCreateRequest request) {
+  public Comment registerComment(CommentCreateRequest request) {
 
-        Comment registerContent = registerCommentRequestToEntity(request);
-        return commentRepository.save(registerContent);
-    }
+    Comment registerContent = registerCommentRequestToEntity(request);
+    return commentRepository.save(registerContent);
+  }
 
-    public Comment registerCommentRequestToEntity(CommentCreateRequest request) {
+  public Comment registerCommentRequestToEntity(CommentCreateRequest request) {
 
-        return Comment.builder().
-                content(request.getContent()).
-                build();
-    }
+    return Comment.builder().content(request.getContent()).build();
+  }
 }
