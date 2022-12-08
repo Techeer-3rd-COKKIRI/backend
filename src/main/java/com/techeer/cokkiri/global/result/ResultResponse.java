@@ -13,6 +13,10 @@ public class ResultResponse {
     return new ResultResponse(resultCode, data);
   }
 
+  public static ResultResponse of(ResultCode resultCode) {
+    return new ResultResponse(resultCode, "");
+  }
+
   public ResultResponse(ResultCode resultCode, Object data) {
     this.code = resultCode.getCode();
     this.message = resultCode.getMessage();

@@ -10,7 +10,7 @@ public enum ResultCode {
 
   // 도메인 별로 나눠서 관리(ex: User 도메인)
   // user
-  USER_CREATE_SUCCESS("U001", "사용자 생성 성공"),
+  USER_REGISTRATION_SUCCESS("U001", "사용자 등록 성공"),
   ;
 
   private final String code;
