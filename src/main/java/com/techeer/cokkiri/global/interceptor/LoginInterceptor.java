@@ -3,14 +3,13 @@ package com.techeer.cokkiri.global.interceptor;
 import com.techeer.cokkiri.domain.user.exception.UnAuthorizedAccessException;
 import com.techeer.cokkiri.domain.user.service.LoginService;
 import com.techeer.cokkiri.global.annotation.LoginRequired;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @Component
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)

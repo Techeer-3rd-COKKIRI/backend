@@ -1,11 +1,10 @@
 package com.techeer.cokkiri.domain.user.service;
 
 import com.techeer.cokkiri.domain.user.entity.User;
+import javax.servlet.http.HttpSession;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import javax.servlet.http.HttpSession;
 
 @Service
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
