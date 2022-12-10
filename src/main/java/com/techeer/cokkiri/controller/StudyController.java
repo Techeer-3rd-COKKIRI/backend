@@ -1,9 +1,9 @@
 package com.techeer.cokkiri.controller;
 
-import com.techeer.cokkiri.dto.request.CreateStudyRequest;
-import com.techeer.cokkiri.dto.response.CreateStudyResponse;
-import com.techeer.cokkiri.mapper.StudyMapper;
-import com.techeer.cokkiri.service.StudyService;
+import com.techeer.cokkiri.domain.study.dto.request.CreateStudyRequest;
+import com.techeer.cokkiri.domain.study.dto.response.CreateStudyResponse;
+import com.techeer.cokkiri.domain.study.mapper.StudyMapper;
+import com.techeer.cokkiri.domain.study.service.StudyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
