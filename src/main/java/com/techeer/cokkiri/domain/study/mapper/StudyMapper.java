@@ -1,20 +1,23 @@
 package com.techeer.cokkiri.domain.study.mapper;
 
 import com.techeer.cokkiri.domain.study.entity.Study;
-import com.techeer.cokkiri.domain.study.dto.request.CreateStudyRequest;
-import com.techeer.cokkiri.domain.study.dto.response.CreateStudyResponse;
+import com.techeer.cokkiri.domain.user.entity.User;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.techeer.cokkiri.domain.study.dto.StudyDto.*;
+
+@Component
 public class StudyMapper {
-  public CreateStudyResponse toDto(Study study) {
-    return CreateStudyResponse.builder().id(study.getId()).studyName(study.getStudyName()).build();
+  public Response toDto(Study study) {
+    return Response.builder().studyName(study.getStudyName()).build();
   }
 
-  public Study toEntity(CreateStudyRequest dto) {
+  public Study toEntity(Request dto, User manager) {
     Study study =
         Study.builder()
-            .manager(dto.getManager())
             .studyName(dto.getStudyName())
             .studyPassword(dto.getStudyPassword())
             .userLimit(dto.getUserLimit())
@@ -22,12 +25,13 @@ public class StudyMapper {
             .studyCycle(dto.getStudyCycle())
             .startDate(dto.getStartDate())
             .finishDate(dto.getFinishDate())
+            .manager(manager)
             .build();
 
     return study;
   }
 
-  public List<CreateStudyResponse> toDtoList(List<Study> list) {
+  public List<Response> toDtoList(List<Study> list) {
     return list.stream().map(this::toDto).collect(Collectors.toList());
   }
 }
