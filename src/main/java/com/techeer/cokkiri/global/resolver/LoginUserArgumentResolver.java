@@ -20,7 +20,7 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
   @Override
   // 현재 파라미터를 resolver가 지원하는지에 대한 boolean 리턴
   public boolean supportsParameter(MethodParameter methodParameter) {
-    // 메소드의 파라미터가 LoginMember 어노테이션을 달고 있으면 resolver의 지원 대상이됨
+    // 메소드의 파라미터가 LoginUser 어노테이션을 달고 있으면 resolver의 지원 대상이됨
     return methodParameter.hasParameterAnnotation(LoginUser.class);
   }
 

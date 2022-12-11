@@ -22,8 +22,7 @@ public class LoginService {
   }
 
   public User getLoginUser() {
-    Long memberId = (Long) httpSession.getAttribute(USER_ID);
-    return userService.findUserById(memberId);
+    return userService.findUserById(getLoginUserId());
   }
 
   public Long getLoginUserId() {
