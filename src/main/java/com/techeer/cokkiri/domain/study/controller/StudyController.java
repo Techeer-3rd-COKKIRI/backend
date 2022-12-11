@@ -1,25 +1,35 @@
 package com.techeer.cokkiri.domain.study.controller;
 
-import com.techeer.cokkiri.domain.study.dto.request.CreateStudyRequest;
-import com.techeer.cokkiri.domain.study.dto.response.CreateStudyResponse;
-import com.techeer.cokkiri.domain.study.mapper.StudyMapper;
+import com.techeer.cokkiri.domain.study.dto.StudyDto;
+import com.techeer.cokkiri.domain.study.exception.StudyDuplicationException;
 import com.techeer.cokkiri.domain.study.service.StudyService;
+import com.techeer.cokkiri.domain.user.entity.User;
+import com.techeer.cokkiri.global.annotation.LoginRequired;
+import com.techeer.cokkiri.global.annotation.LoginUser;
+import com.techeer.cokkiri.global.result.ResultResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
+
+import javax.validation.Valid;
+
+import static com.techeer.cokkiri.global.result.ResultCode.STUDY_CREATE_SUCCESS;
 
 @RestController
-@RequestMapping("api/v1/study")
+@RequestMapping("api/v1/studies")
 @RequiredArgsConstructor
 public class StudyController {
-
   private final StudyService studyService;
-  private final StudyMapper studyMapper;
 
   @PostMapping
-  public ResponseEntity<CreateStudyResponse> createStudy(
-      @RequestBody CreateStudyRequest requestDto) {
-    CreateStudyResponse responseDto = studyMapper.toDto(studyService.createStudy(requestDto));
-    return ResponseEntity.ok(responseDto);
+  @LoginRequired
+  public ResponseEntity<ResultResponse> createStudy(
+      @Valid @RequestBody StudyDto.Request studyRequest, @ApiIgnore @LoginUser User loginUser) {
+    if (studyService.isDuplicatedStudy(studyRequest.getStudyName())) {
+      throw new StudyDuplicationException();
+    }
+    studyService.createStudy(studyRequest, loginUser);
+    return ResponseEntity.ok(ResultResponse.of(STUDY_CREATE_SUCCESS));
   }
 }
