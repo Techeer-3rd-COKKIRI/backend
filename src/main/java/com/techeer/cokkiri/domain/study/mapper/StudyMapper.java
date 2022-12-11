@@ -1,13 +1,12 @@
 package com.techeer.cokkiri.domain.study.mapper;
 
+import static com.techeer.cokkiri.domain.study.dto.StudyDto.*;
+
 import com.techeer.cokkiri.domain.study.entity.Study;
 import com.techeer.cokkiri.domain.user.entity.User;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static com.techeer.cokkiri.domain.study.dto.StudyDto.*;
+import org.springframework.stereotype.Component;
 
 @Component
 public class StudyMapper {

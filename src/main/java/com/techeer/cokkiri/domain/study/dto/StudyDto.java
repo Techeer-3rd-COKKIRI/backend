@@ -1,11 +1,10 @@
 package com.techeer.cokkiri.domain.study.dto;
 
-import lombok.*;
-
-import javax.validation.constraints.NotEmpty;
-import java.time.LocalDate;
-
 import static com.techeer.cokkiri.domain.study.constant.StudyConstants.*;
+
+import java.time.LocalDate;
+import javax.validation.constraints.NotEmpty;
+import lombok.*;
 
 public class StudyDto {
   @Builder
@@ -20,8 +19,7 @@ public class StudyDto {
   @AllArgsConstructor(access = AccessLevel.PROTECTED)
   @NoArgsConstructor(access = AccessLevel.PROTECTED)
   public static class Request {
-    @NotEmpty
-    private String studyName;
+    @NotEmpty private String studyName;
     @Builder.Default private String studyPassword = DEFAULT_PASSWORD; // 추후 인코딩 추가
     @Builder.Default private Integer userLimit = DEFAULT_USER_LIMIT;
     @Builder.Default private String introduction = DEFAULT_INTRODUCTION;
