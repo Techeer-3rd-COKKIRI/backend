@@ -10,5 +10,4 @@ public class CommentDto {
 
   private Integer studyWeek;
   private String content;
-
 }

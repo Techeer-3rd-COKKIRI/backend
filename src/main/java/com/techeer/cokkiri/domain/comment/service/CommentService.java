@@ -5,7 +5,6 @@ import com.techeer.cokkiri.domain.comment.entity.Comment;
 import com.techeer.cokkiri.domain.comment.mapper.CommentMapper;
 import com.techeer.cokkiri.domain.comment.repository.CommentRepository;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +20,4 @@ public class CommentService {
 
     commentRepository.save(comment);
   }
-
-
 }

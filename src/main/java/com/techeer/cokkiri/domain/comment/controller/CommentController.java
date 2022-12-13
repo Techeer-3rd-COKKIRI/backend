@@ -5,7 +5,6 @@ import com.techeer.cokkiri.domain.comment.service.CommentService;
 import com.techeer.cokkiri.global.result.ResultCode;
 import com.techeer.cokkiri.global.result.ResultResponse;
 import javax.validation.Valid;
-
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +21,7 @@ public class CommentController {
   private final CommentService commentService;
 
   @PostMapping
-  public ResponseEntity<ResultResponse> createComment(
-      @Valid @RequestBody CommentDto request) {
+  public ResponseEntity<ResultResponse> createComment(@Valid @RequestBody CommentDto request) {
 
     commentService.registerComment(request);
 

@@ -5,11 +5,11 @@ import com.techeer.cokkiri.domain.comment.entity.Comment;
 
 public class CommentMapper {
 
-    public static Comment toEntity(CommentDto request) {
+  public static Comment toEntity(CommentDto request) {
 
-        return Comment.builder()
-                .content(request.getContent())
-                .studyWeek(request.getStudyWeek())
-                .build();
-    }
+    return Comment.builder()
+        .content(request.getContent())
+        .studyWeek(request.getStudyWeek())
+        .build();
+  }
 }
