@@ -1,24 +1,30 @@
 package com.techeer.cokkiri.domain.user.service;
 
-import com.techeer.cokkiri.domain.user.dto.UserDto;
+import com.techeer.cokkiri.domain.user.dto.UserRegisterRequest;
 import com.techeer.cokkiri.domain.user.entity.User;
 import com.techeer.cokkiri.domain.user.exception.UserNotFoundException;
+import com.techeer.cokkiri.domain.user.mapper.UserMapper;
 import com.techeer.cokkiri.domain.user.repository.UserRepository;
+import com.techeer.cokkiri.global.util.PasswordUtil;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserService {
   private final UserRepository userRepository;
+  private final PasswordUtil passwordUtil;
 
   public boolean isDuplicatedUsername(String username) {
-    return !userRepository.existsByUsername(username);
+    return userRepository.existsByUsername(username);
   }
 
-  public void register(User user) {
+  public void register(UserRegisterRequest userRegisterRequest) {
+    User user = UserMapper.toEntity(userRegisterRequest);
+    user.setEncryptedPassword(passwordUtil.encodingPassword(user.getPassword()));
     userRepository.save(user);
   }
 
@@ -28,15 +34,5 @@ public class UserService {
 
   public User findUserByUsername(String username) {
     return userRepository.findUserByUsername(username).orElseThrow(UserNotFoundException::new);
-  }
-
-  // 회원 정보가 유효한지 확인
-  public boolean isValidUser(UserDto userDto, PasswordEncoder passwordEncoder) {
-    User user = findUserByUsername(userDto.getUsername());
-    // DTO로 전달된 비밀번호와 DB에 저장된 암호화된 비밀번호가 같은지 확인
-    if (passwordEncoder.matches(userDto.getPassword(), user.getPassword())) {
-      return true;
-    }
-    return false;
   }
 }

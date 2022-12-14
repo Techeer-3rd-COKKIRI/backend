@@ -49,4 +49,8 @@ public class User extends BaseEntity {
     this.imageUrl = imageUrl;
     this.bio = bio;
   }
+
+  public void setEncryptedPassword(String encryptedPassword) {
+    this.password = encryptedPassword;
+  }
 }
