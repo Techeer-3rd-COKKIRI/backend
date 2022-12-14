@@ -4,7 +4,6 @@ import static com.techeer.cokkiri.global.result.ResultCode.USER_REGISTRATION_SUC
 import static com.techeer.cokkiri.global.result.ResultCode.USER_USERNAME_NOT_DUPLICATED;
 
 import com.techeer.cokkiri.domain.user.dto.UserRegisterRequest;
-import com.techeer.cokkiri.domain.user.entity.User;
 import com.techeer.cokkiri.domain.user.exception.UserDuplicatedException;
 import com.techeer.cokkiri.domain.user.service.UserService;
 import com.techeer.cokkiri.global.result.ResultCode;
@@ -15,7 +14,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Api(tags = "회원 인증 API")
