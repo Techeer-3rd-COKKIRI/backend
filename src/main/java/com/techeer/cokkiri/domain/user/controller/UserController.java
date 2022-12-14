@@ -9,8 +9,8 @@ import com.techeer.cokkiri.domain.user.service.UserService;
 import com.techeer.cokkiri.global.result.ResultCode;
 import com.techeer.cokkiri.global.result.ResultResponse;
 import io.swagger.annotations.Api;
-import javax.validation.Valid;
 import io.swagger.annotations.ApiOperation;
+import javax.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,10 +23,10 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
   private final UserService userService;
 
-
   @ApiOperation(value = "회원가입")
   @PostMapping
-  public ResponseEntity<ResultResponse> registration(@RequestBody @Valid UserRegisterRequest userRegisterRequest) {
+  public ResponseEntity<ResultResponse> registration(
+      @RequestBody @Valid UserRegisterRequest userRegisterRequest) {
     if (userService.isDuplicatedUsername(userRegisterRequest.getUsername())) {
       throw new UserDuplicatedException();
     }

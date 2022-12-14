@@ -10,8 +10,6 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserService {
