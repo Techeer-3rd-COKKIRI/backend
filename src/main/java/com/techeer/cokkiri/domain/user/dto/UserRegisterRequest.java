@@ -1,16 +1,14 @@
 package com.techeer.cokkiri.domain.user.dto;
 
-import com.techeer.cokkiri.domain.user.entity.User;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import lombok.*;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Getter
 @Builder
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class UserDto {
+public class UserRegisterRequest {
 
   @NotBlank(message = "username을 입력해주세요")
   private String username;
@@ -25,14 +23,4 @@ public class UserDto {
 
   private String imageUrl;
   private String bio;
-
-  public static User toEntity(UserDto userDto, PasswordEncoder passwordEncoder) {
-    return User.builder()
-        .username(userDto.getUsername())
-        .password(passwordEncoder.encode(userDto.getPassword()))
-        .nickname(userDto.getNickname())
-        .imageUrl(userDto.getImageUrl())
-        .bio(userDto.getBio())
-        .build();
-  }
 }
