@@ -1,5 +1,11 @@
 package com.techeer.cokkiri.domain.study.service;
 
+import static com.techeer.cokkiri.fixture.StudyFixtures.JAVA_STUDY_FIXTURE;
+import static com.techeer.cokkiri.fixture.StudyFixtures.JAVA_STUDY_REQUEST;
+import static com.techeer.cokkiri.fixture.UserFixtures.STUDY_MANAGER_FIXTURE;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
 import com.techeer.cokkiri.domain.study.mapper.StudyMapper;
 import com.techeer.cokkiri.domain.study.repository.StudyRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -8,12 +14,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import static com.techeer.cokkiri.fixture.StudyFixtures.JAVA_STUDY_REQUEST;
-import static com.techeer.cokkiri.fixture.UserFixtures.STUDY_MANAGER_FIXTURE;
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
-import static com.techeer.cokkiri.fixture.StudyFixtures.JAVA_STUDY_FIXTURE;
 
 @ExtendWith(MockitoExtension.class)
 public class StudyServiceTest {

@@ -1,5 +1,9 @@
 package com.techeer.cokkiri.domain.study.repository;
 
+import static com.techeer.cokkiri.fixture.StudyFixtures.JAVA_STUDY_FIXTURE;
+import static com.techeer.cokkiri.fixture.UserFixtures.STUDY_MANAGER_FIXTURE;
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.techeer.cokkiri.domain.study.entity.Study;
 import com.techeer.cokkiri.domain.user.entity.User;
 import com.techeer.cokkiri.domain.user.repository.UserRepository;
@@ -8,10 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static com.techeer.cokkiri.fixture.StudyFixtures.JAVA_STUDY_FIXTURE;
-import static com.techeer.cokkiri.fixture.UserFixtures.STUDY_MANAGER_FIXTURE;
 
 @DataJpaTest
 public class StudyRepositoryTest {

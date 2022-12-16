@@ -1,10 +1,10 @@
 package com.techeer.cokkiri.fixture;
 
-import com.techeer.cokkiri.domain.study.dto.StudyDto;
-import com.techeer.cokkiri.domain.study.entity.Study;
-
 import static com.techeer.cokkiri.domain.study.constant.StudyConstants.*;
 import static com.techeer.cokkiri.fixture.UserFixtures.STUDY_MANAGER_FIXTURE;
+
+import com.techeer.cokkiri.domain.study.dto.StudyDto;
+import com.techeer.cokkiri.domain.study.entity.Study;
 
 public class StudyFixtures {
   public static final String JAVA_STUDY_NAME = "자바 스터디";
