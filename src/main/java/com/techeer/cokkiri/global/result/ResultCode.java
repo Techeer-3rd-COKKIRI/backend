@@ -16,11 +16,9 @@ public enum ResultCode {
   USER_LOGIN_SUCCESS("U004", "회원 로그인 성공"),
   USER_LOGOUT_SUCCESS("U005", "회원 로그아웃 성공"),
 
-
   // study
   STUDY_CREATE_SUCCESS("S001", "스터디 생성 성공"),
-  STUDY_GET_SUCCESS("S002", "스터디 조회 성공")
-  ;
+  STUDY_GET_SUCCESS("S002", "스터디 조회 성공");
 
   private final String code;
   private final String message;

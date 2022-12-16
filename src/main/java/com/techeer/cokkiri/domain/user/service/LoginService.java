@@ -2,10 +2,8 @@ package com.techeer.cokkiri.domain.user.service;
 
 import com.techeer.cokkiri.domain.user.dto.UserDto;
 import com.techeer.cokkiri.domain.user.entity.User;
-import javax.servlet.http.HttpSession;
-
-import com.techeer.cokkiri.domain.user.exception.UserNotFoundException;
 import com.techeer.cokkiri.global.util.PasswordUtil;
+import javax.servlet.http.HttpSession;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -38,8 +36,8 @@ public class LoginService {
     return getLoginUserId() != null;
   }
 
-  public boolean isValidUser(UserDto .Request userRequest) {
-      User user = userService.findUserByUsername(userRequest.getUsername());
-      return passwordUtil.isSamePassword(userRequest.getPassword(), user.getPassword());
+  public boolean isValidUser(UserDto.Request userRequest) {
+    User user = userService.findUserByUsername(userRequest.getUsername());
+    return passwordUtil.isSamePassword(userRequest.getPassword(), user.getPassword());
   }
 }

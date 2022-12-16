@@ -4,10 +4,10 @@ import static com.techeer.cokkiri.global.result.ResultCode.USER_LOGIN_SUCCESS;
 import static com.techeer.cokkiri.global.result.ResultCode.USER_REGISTRATION_SUCCESS;
 import static com.techeer.cokkiri.global.result.ResultCode.USER_USERNAME_NOT_DUPLICATED;
 
-import com.techeer.cokkiri.domain.user.dto.UserRegisterRequest;
-import com.techeer.cokkiri.domain.user.exception.UserDuplicatedException;
 import com.techeer.cokkiri.domain.user.dto.UserDto;
+import com.techeer.cokkiri.domain.user.dto.UserRegisterRequest;
 import com.techeer.cokkiri.domain.user.entity.User;
+import com.techeer.cokkiri.domain.user.exception.UserDuplicatedException;
 import com.techeer.cokkiri.domain.user.service.LoginService;
 import com.techeer.cokkiri.domain.user.service.UserService;
 import com.techeer.cokkiri.global.result.ResultCode;
@@ -55,7 +55,7 @@ public class UserController {
   public ResponseEntity<ResultResponse> login(@RequestBody UserDto.Request userRequest) {
     boolean isValidUser = loginService.isValidUser(userRequest);
 
-    if(isValidUser) {
+    if (isValidUser) {
       User user = userService.findUserByUsername(userRequest.getUsername());
       loginService.login(user.getId());
     }
