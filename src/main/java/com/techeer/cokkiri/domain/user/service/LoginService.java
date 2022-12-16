@@ -1,6 +1,8 @@
 package com.techeer.cokkiri.domain.user.service;
 
+import com.techeer.cokkiri.domain.user.dto.UserDto;
 import com.techeer.cokkiri.domain.user.entity.User;
+import com.techeer.cokkiri.global.util.PasswordUtil;
 import javax.servlet.http.HttpSession;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class LoginService {
   private final HttpSession httpSession;
   private final UserService userService;
+  private final PasswordUtil passwordUtil;
   public static final String USER_ID = "USER_ID";
 
   public void login(long id) {
@@ -31,5 +34,10 @@ public class LoginService {
 
   public boolean isUserLogin() {
     return getLoginUserId() != null;
+  }
+
+  public boolean isValidUser(UserDto.Request userRequest) {
+    User user = userService.findUserByUsername(userRequest.getUsername());
+    return passwordUtil.isSamePassword(userRequest.getPassword(), user.getPassword());
   }
 }

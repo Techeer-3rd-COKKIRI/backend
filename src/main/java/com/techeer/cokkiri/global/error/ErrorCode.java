@@ -16,6 +16,9 @@ public enum ErrorCode {
   EXAMPLE_USER_ERROR(400, "U001", "테스트용 예시 에러코드"),
   USER_NOT_FOUND_ERROR(400, "U002", "사용자를 찾을 수 없음"),
   UNAUTHORIZED_ACCESS_ERROR(400, "U003", "승인되지 않은 접근"),
+  USER_USERNAME_DUPLICATED(400, "U004", "회원 아이디 중복"),
+
+  // Study
   STUDY_DUPLICATION_ERROR(400, "S001", "스터디의 이름이 중복됨");
 
   private final int status;

@@ -18,7 +18,7 @@ public class User extends BaseEntity {
   private Long id;
 
   // 회원 아이디
-  @Column(nullable = false, length = 30)
+  @Column(nullable = false, unique = true, length = 30)
   private String username;
 
   @Column(nullable = false, length = 30)
@@ -48,5 +48,9 @@ public class User extends BaseEntity {
     this.password = password;
     this.imageUrl = imageUrl;
     this.bio = bio;
+  }
+
+  public void setEncryptedPassword(String encryptedPassword) {
+    this.password = encryptedPassword;
   }
 }
