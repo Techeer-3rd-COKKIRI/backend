@@ -1,6 +1,5 @@
 package com.techeer.cokkiri.domain.user.controller;
 
-import static com.techeer.cokkiri.domain.user.controller.UserController.USER_API_URI;
 import static com.techeer.cokkiri.global.result.ResultCode.USER_LOGIN_SUCCESS;
 import static com.techeer.cokkiri.global.result.ResultCode.USER_REGISTRATION_SUCCESS;
 import static com.techeer.cokkiri.global.result.ResultCode.USER_USERNAME_NOT_DUPLICATED;
@@ -51,12 +50,15 @@ public class UserController {
     return ResponseEntity.ok(ResultResponse.of(USER_USERNAME_NOT_DUPLICATED, false));
   }
 
-  @PostMapping
+  @ApiOperation(value = "로그인")
+  @PostMapping("/login")
   public ResponseEntity<ResultResponse> login(@RequestBody UserDto.Request userRequest) {
-    //유효한 id와 비밀번호인지 db에 존재여부 체크 - 유효하지 않으면 로그인실패 exception
+    boolean isValidUser = loginService.isValidUser(userRequest);
 
-    //유효한 멤버면 로그인시킴 - db에서 username과 비번으로 id찾아서로그인?
-
+    if(isValidUser) {
+      User user = userService.findUserByUsername(userRequest.getUsername());
+      loginService.login(user.getId());
+    }
     return ResponseEntity.ok(ResultResponse.of(USER_LOGIN_SUCCESS));
   }
 }

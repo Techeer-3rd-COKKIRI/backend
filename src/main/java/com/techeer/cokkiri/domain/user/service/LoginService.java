@@ -3,6 +3,9 @@ package com.techeer.cokkiri.domain.user.service;
 import com.techeer.cokkiri.domain.user.dto.UserDto;
 import com.techeer.cokkiri.domain.user.entity.User;
 import javax.servlet.http.HttpSession;
+
+import com.techeer.cokkiri.domain.user.exception.UserNotFoundException;
+import com.techeer.cokkiri.global.util.PasswordUtil;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class LoginService {
   private final HttpSession httpSession;
   private final UserService userService;
+  private final PasswordUtil passwordUtil;
   public static final String USER_ID = "USER_ID";
 
   public void login(long id) {
@@ -35,13 +39,7 @@ public class LoginService {
   }
 
   public boolean isValidUser(UserDto .Request userRequest) {
-
-    //username을 가지고 찾아서 password를 비교하고 맞으면 true 리턴
-
       User user = userService.findUserByUsername(userRequest.getUsername());
-      return true;
-          //    passwordEncoder.matches(userRequest.getPassword(), user.getPassword());
-
-
+      return passwordUtil.isSamePassword(userRequest.getPassword(), user.getPassword());
   }
 }
