@@ -3,7 +3,7 @@ package com.techeer.cokkiri.domain.user.controller;
 import static com.techeer.cokkiri.global.result.ResultCode.USER_REGISTRATION_SUCCESS;
 import static com.techeer.cokkiri.global.result.ResultCode.USER_USERNAME_NOT_DUPLICATED;
 
-import com.techeer.cokkiri.domain.user.dto.UserRegisterRequest;
+import com.techeer.cokkiri.domain.user.dto.UserDto;
 import com.techeer.cokkiri.domain.user.exception.UserDuplicatedException;
 import com.techeer.cokkiri.domain.user.service.UserService;
 import com.techeer.cokkiri.global.result.ResultCode;
@@ -26,11 +26,11 @@ public class UserController {
 
   @ApiOperation(value = "회원가입")
   @PostMapping
-  public ResponseEntity<ResultResponse> registration(@RequestBody @Valid UserRegisterRequest userRegisterRequest) {
-    if (userService.isDuplicatedUsername(userRegisterRequest.getUsername())) {
+  public ResponseEntity<ResultResponse> registration(@RequestBody @Valid UserDto.Request userRequest) {
+    if (userService.isDuplicatedUsername(userRequest.getUsername())) {
       throw new UserDuplicatedException();
     }
-    userService.register(userRegisterRequest);
+    userService.register(userRequest);
     return ResponseEntity.ok(ResultResponse.of(USER_REGISTRATION_SUCCESS));
   }
 
