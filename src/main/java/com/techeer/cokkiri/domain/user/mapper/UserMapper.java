@@ -9,7 +9,6 @@ public class UserMapper {
         .username(userRegisterRequest.getUsername())
         .password(userRegisterRequest.getPassword())
         .nickname(userRegisterRequest.getNickname())
-        .imageUrl(userRegisterRequest.getImageUrl())
         .bio(userRegisterRequest.getBio())
         .build();
   }
