@@ -1,5 +1,13 @@
 package com.techeer.cokkiri.domain.study.controller;
 
+import static com.techeer.cokkiri.fixture.StudyFixtures.JAVA_STUDY_FIXTURE;
+import static com.techeer.cokkiri.fixture.UserFixtures.STUDY_MANAGER_FIXTURE;
+import static com.techeer.cokkiri.global.result.ResultCode.STUDY_CREATE_SUCCESS;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techeer.cokkiri.domain.study.service.StudyService;
@@ -18,14 +26,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
-import static com.techeer.cokkiri.fixture.StudyFixtures.JAVA_STUDY_FIXTURE;
-import static com.techeer.cokkiri.fixture.UserFixtures.STUDY_MANAGER_FIXTURE;
-import static org.mockito.Mockito.*;
-import static com.techeer.cokkiri.global.result.ResultCode.STUDY_CREATE_SUCCESS;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(StudyController.class)
 public class StudyControllerTest {
