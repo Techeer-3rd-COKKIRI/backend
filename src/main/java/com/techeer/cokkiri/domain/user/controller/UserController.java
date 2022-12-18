@@ -25,7 +25,8 @@ public class UserController {
 
   @ApiOperation(value = "회원가입")
   @PostMapping
-  public ResponseEntity<ResultResponse> registration(@RequestBody @Valid UserDto.Request userRequest) {
+  public ResponseEntity<ResultResponse> registration(
+      @RequestBody @Valid UserDto.Request userRequest) {
     if (userService.isDuplicatedUsername(userRequest.getUsername())) {
 
       throw new UserDuplicatedException();
