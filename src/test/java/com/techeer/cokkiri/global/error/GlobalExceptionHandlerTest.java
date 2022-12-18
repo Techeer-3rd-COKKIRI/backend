@@ -62,7 +62,7 @@ class GlobalExceptionHandlerTest {
     mockMvc
         .perform(get("/exception/1"))
         .andExpect(status().isBadRequest())
-        .andExpect(jsonPath("$.businessCode").value(EXAMPLE_USER_ERROR.getCode()))
+        .andExpect(jsonPath("$.businessCode").value(USER_NOT_FOUND_ERROR.getCode()))
         .andDo(print());
   }
 
@@ -98,7 +98,7 @@ class GlobalExceptionHandlerTest {
   static class TestController {
     @GetMapping("/{id}")
     public String executeBusinessException(@PathVariable Long id) {
-      throw new BusinessException(EXAMPLE_USER_ERROR);
+      throw new BusinessException(USER_NOT_FOUND_ERROR);
     }
 
     @PostMapping
