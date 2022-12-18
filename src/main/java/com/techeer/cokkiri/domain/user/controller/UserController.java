@@ -5,6 +5,7 @@ import static com.techeer.cokkiri.global.result.ResultCode.USER_REGISTRATION_SUC
 import static com.techeer.cokkiri.global.result.ResultCode.USER_USERNAME_NOT_DUPLICATED;
 
 import com.techeer.cokkiri.domain.user.dto.UserDto;
+import com.techeer.cokkiri.domain.user.entity.User;
 import com.techeer.cokkiri.domain.user.exception.UserDuplicatedException;
 import com.techeer.cokkiri.domain.user.service.LoginService;
 import com.techeer.cokkiri.domain.user.service.UserService;
@@ -29,7 +30,7 @@ public class UserController {
   @ApiOperation(value = "회원가입")
   @PostMapping
   public ResponseEntity<ResultResponse> registration(
-      @RequestBody @Valid UserDto.Request userRequest) {
+      @RequestBody @Valid UserDto.RegisterRequest userRequest) {
     if (userService.isDuplicatedUsername(userRequest.getUsername())) {
       throw new UserDuplicatedException();
     }
@@ -50,7 +51,7 @@ public class UserController {
 
   @ApiOperation(value = "로그인")
   @PostMapping("/login")
-  public ResponseEntity<ResultResponse> login(@RequestBody @Valid UserDto.Request userRequest) {
+  public ResponseEntity<ResultResponse> login(@RequestBody @Valid UserDto.LoginRequest userRequest) {
     boolean isValidUser = loginService.isValidUser(userRequest);
 
     if (isValidUser) {

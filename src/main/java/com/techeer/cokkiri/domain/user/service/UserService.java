@@ -22,7 +22,7 @@ public class UserService {
     return userRepository.existsByUsername(username);
   }
 
-  public void register(UserDto.Request requestDto) {
+  public void register(UserDto.RegisterRequest requestDto) {
     User user = userMapper.toEntity(requestDto);
     user.setEncryptedPassword(passwordUtil.encodingPassword(user.getPassword()));
     userRepository.save(user);
