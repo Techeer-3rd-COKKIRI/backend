@@ -8,7 +8,7 @@ import lombok.*;
 
 public class StudyDto {
   @Builder
-  @AllArgsConstructor(access = AccessLevel.PROTECTED)
+  @AllArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Response {
     private Long id;
     private String studyName;
@@ -16,8 +16,8 @@ public class StudyDto {
 
   @Getter
   @Builder
-  @AllArgsConstructor(access = AccessLevel.PROTECTED)
-  @NoArgsConstructor(access = AccessLevel.PROTECTED)
+  @AllArgsConstructor(access = AccessLevel.PRIVATE)
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class Request {
     @NotEmpty private String studyName;
     @Builder.Default private String studyPassword = DEFAULT_PASSWORD; // 추후 인코딩 추가
