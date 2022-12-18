@@ -28,7 +28,9 @@ public class StudyService {
     return studyRepository.existsByStudyName(studyName);
   }
 
-  public Study findStudyById(long id) {
-    return studyRepository.findById(id).orElseThrow(StudyNotFoundException::new);
+  public Study findByStudyId(Long studyId) {
+    Study study = studyRepository.findById(studyId).orElseThrow(StudyNotFoundException::new);
+
+    return study;
   }
 }
