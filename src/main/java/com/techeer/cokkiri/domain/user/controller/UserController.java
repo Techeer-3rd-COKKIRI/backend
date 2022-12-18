@@ -51,7 +51,8 @@ public class UserController {
 
   @ApiOperation(value = "로그인")
   @PostMapping("/login")
-  public ResponseEntity<ResultResponse> login(@RequestBody @Valid UserDto.LoginRequest userRequest) {
+  public ResponseEntity<ResultResponse> login(
+      @RequestBody @Valid UserDto.LoginRequest userRequest) {
     boolean isValidUser = loginService.isValidUser(userRequest);
 
     if (isValidUser) {
