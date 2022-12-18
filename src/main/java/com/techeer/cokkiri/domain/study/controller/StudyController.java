@@ -35,7 +35,7 @@ public class StudyController {
     return ResponseEntity.ok(ResultResponse.of(STUDY_CREATE_SUCCESS));
   }
 
-@GetMapping("{studyId}")
+  @GetMapping("{studyId}")
   public ResponseEntity<ResultResponse> findStudyByStudyId(@PathVariable Long studyId) {
     Study study = studyService.findByStudyId(studyId);
     return ResponseEntity.ok(ResultResponse.of(STUDY_GET_SUCCESS, study));
