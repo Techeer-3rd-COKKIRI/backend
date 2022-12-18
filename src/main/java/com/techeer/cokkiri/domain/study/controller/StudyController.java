@@ -1,8 +1,10 @@
 package com.techeer.cokkiri.domain.study.controller;
 
 import static com.techeer.cokkiri.global.result.ResultCode.STUDY_CREATE_SUCCESS;
+import static com.techeer.cokkiri.global.result.ResultCode.STUDY_GET_SUCCESS;
 
 import com.techeer.cokkiri.domain.study.dto.StudyDto;
+import com.techeer.cokkiri.domain.study.entity.Study;
 import com.techeer.cokkiri.domain.study.exception.StudyDuplicationException;
 import com.techeer.cokkiri.domain.study.service.StudyService;
 import com.techeer.cokkiri.domain.user.entity.User;
@@ -31,5 +33,11 @@ public class StudyController {
     }
     studyService.createStudy(studyRequest, loginUser);
     return ResponseEntity.ok(ResultResponse.of(STUDY_CREATE_SUCCESS));
+  }
+
+@GetMapping("{studyId}")
+  public ResponseEntity<ResultResponse> findStudyByStudyId(@PathVariable Long studyId) {
+    Study study = studyService.findByStudyId(studyId);
+    return ResponseEntity.ok(ResultResponse.of(STUDY_GET_SUCCESS, study));
   }
 }
