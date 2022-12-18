@@ -11,7 +11,7 @@ import lombok.*;
 public class UserDto {
 
   @Builder
-  @AllArgsConstructor(access = AccessLevel.PROTECTED)
+  @AllArgsConstructor(access = AccessLevel.PRIVATE)
   public static class RegisterResponse {
     private Long id;
     private String username;
@@ -19,8 +19,8 @@ public class UserDto {
 
   @Getter
   @Builder
-  @AllArgsConstructor(access = AccessLevel.PROTECTED)
-  @NoArgsConstructor(access = AccessLevel.PROTECTED)
+  @AllArgsConstructor(access = AccessLevel.PRIVATE)
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class RegisterRequest {
     @NotBlank(message = "username을 입력해주세요")
     private String username;
