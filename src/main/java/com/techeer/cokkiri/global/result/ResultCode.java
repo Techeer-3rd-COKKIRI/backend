@@ -17,8 +17,7 @@ public enum ResultCode {
   USER_LOGOUT_SUCCESS("U005", "회원 로그아웃 성공"),
 
   // study
-  STUDY_CREATE_SUCCESS("S001", "스터디 생성 성공")
-  ;
+  STUDY_CREATE_SUCCESS("S001", "스터디 생성 성공");
 
   private final String code;
   private final String message;

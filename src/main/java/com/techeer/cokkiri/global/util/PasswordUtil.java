@@ -8,12 +8,13 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public class PasswordUtil {
-    private final PasswordEncoder passwordEncoder;
-    public String encodingPassword(String password) {
-        return passwordEncoder.encode(password);
-    }
+  private final PasswordEncoder passwordEncoder;
 
-    public boolean isSamePassword(String rowPassword, String encryptPassword) {
-        return passwordEncoder.matches(rowPassword, encryptPassword);
-    }
+  public String encodingPassword(String password) {
+    return passwordEncoder.encode(password);
+  }
+
+  public boolean isSamePassword(String rowPassword, String encryptPassword) {
+    return passwordEncoder.matches(rowPassword, encryptPassword);
+  }
 }
