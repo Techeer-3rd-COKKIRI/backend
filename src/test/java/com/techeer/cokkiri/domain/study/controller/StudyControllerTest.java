@@ -26,6 +26,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.filter.CharacterEncodingFilter;
+
+import java.nio.charset.StandardCharsets;
 
 @WebMvcTest(StudyController.class)
 public class StudyControllerTest {
@@ -36,7 +39,10 @@ public class StudyControllerTest {
 
   @BeforeEach
   void setUp(WebApplicationContext applicationContext) {
-    mockMvc = MockMvcBuilders.webAppContextSetup(applicationContext).build();
+    mockMvc =
+        MockMvcBuilders.webAppContextSetup(applicationContext)
+            .addFilter(new CharacterEncodingFilter(StandardCharsets.UTF_8.name(), true))
+            .build();
   }
 
   private String toJsonString(Object object) throws JsonProcessingException {
@@ -57,9 +63,7 @@ public class StudyControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(toJsonString(StudyFixtures.JAVA_STUDY_REQUEST)))
         .andExpect(status().isOk())
-        .andExpect(
-            content()
-                .string(toJsonString(ResponseEntity.ok(ResultResponse.of(STUDY_CREATE_SUCCESS)))))
+        .andExpect(content().string(toJsonString(ResultResponse.of(STUDY_CREATE_SUCCESS))))
         .andDo(print());
   }
 }
