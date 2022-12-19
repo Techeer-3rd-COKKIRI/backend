@@ -1,7 +1,6 @@
 package com.techeer.cokkiri.global.error;
 
 import static com.techeer.cokkiri.global.error.ErrorCode.INPUT_INVALID_VALUE;
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 import com.techeer.cokkiri.global.error.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +38,6 @@ public class GlobalExceptionHandler {
       MethodArgumentNotValidException e) {
     final ErrorResponse response = ErrorResponse.of(INPUT_INVALID_VALUE, e.getBindingResult());
     log.warn(e.getMessage());
-    return new ResponseEntity<>(response, BAD_REQUEST);
+    return ResponseEntity.status(INPUT_INVALID_VALUE.getStatus()).body(response);
   }
 }
