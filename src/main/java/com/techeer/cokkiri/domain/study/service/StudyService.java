@@ -2,10 +2,12 @@ package com.techeer.cokkiri.domain.study.service;
 
 import com.techeer.cokkiri.domain.study.dto.StudyDto;
 import com.techeer.cokkiri.domain.study.entity.Study;
+import com.techeer.cokkiri.domain.study.exception.StudyNotFoundException;
 import com.techeer.cokkiri.domain.study.mapper.StudyMapper;
 import com.techeer.cokkiri.domain.study.repository.StudyRepository;
 import com.techeer.cokkiri.domain.user.entity.User;
 import lombok.AccessLevel;
+import com.techeer.cokkiri.domain.user.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +27,10 @@ public class StudyService {
 
   public boolean isDuplicatedStudy(String studyName) {
     return studyRepository.existsByStudyName(studyName);
+  }
+
+
+  public Study findStudyById(long id) {
+    return studyRepository.findById(id).orElseThrow(StudyNotFoundException::new);
   }
 }
