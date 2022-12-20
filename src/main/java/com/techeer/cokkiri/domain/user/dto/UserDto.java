@@ -2,9 +2,8 @@ package com.techeer.cokkiri.domain.user.dto;
 
 import static com.techeer.cokkiri.global.constant.RegExp.PASSWORD_REGEXP;
 
-import javax.validation.constraints.Pattern;
-
 import io.swagger.annotations.ApiModel;
+import javax.validation.constraints.Pattern;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 

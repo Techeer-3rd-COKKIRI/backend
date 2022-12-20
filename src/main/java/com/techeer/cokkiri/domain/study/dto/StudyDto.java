@@ -2,10 +2,9 @@ package com.techeer.cokkiri.domain.study.dto;
 
 import static com.techeer.cokkiri.domain.study.constant.StudyConstants.*;
 
+import io.swagger.annotations.ApiModel;
 import java.time.LocalDate;
 import javax.validation.constraints.Pattern;
-
-import io.swagger.annotations.ApiModel;
 import lombok.*;
 
 public class StudyDto {
