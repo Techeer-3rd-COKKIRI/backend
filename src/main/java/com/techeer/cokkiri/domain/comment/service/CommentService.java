@@ -15,22 +15,20 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public class CommentService {
 
-    private final CommentRepository commentRepository;
+  private final CommentRepository commentRepository;
 
-    private final CommentMapper commentMapper;
+  private final CommentMapper commentMapper;
 
+  public void registerComment(CommentDto.Request commentDto, User user, Study study) {
 
-    public void registerComment(CommentDto.Request commentDto, User user, Study study) {
+    Comment comment = commentMapper.toEntity(commentDto, user, study);
 
-        Comment comment = commentMapper.toEntity(commentDto, user, study);
+    commentRepository.save(comment);
+  }
 
-        commentRepository.save(comment);
-    }
-
-    public Comment findCommentByStudyWeek(Integer studyWeek) {
-        return commentRepository.findCommentByStudyWeek(studyWeek).orElseThrow(CommentNotFoundException::new);
-    }
-
-
-
+  public Comment findCommentByStudyWeek(Integer studyWeek) {
+    return commentRepository
+        .findCommentByStudyWeek(studyWeek)
+        .orElseThrow(CommentNotFoundException::new);
+  }
 }

@@ -9,16 +9,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommentMapper {
 
-    public Comment toEntity(CommentDto.Request dto, User user, Study study) {
+  public Comment toEntity(CommentDto.Request dto, User user, Study study) {
 
-        Comment comment =
-                Comment.builder()
-                        .content(dto.getContent())
-                        .studyWeek(dto.getStudyWeek())
-                        .user(user)
-                        .study(study)
-                        .build();
+    Comment comment =
+        Comment.builder()
+            .content(dto.getContent())
+            .studyWeek(dto.getStudyWeek())
+            .user(user)
+            .study(study)
+            .build();
 
-        return comment;
-    }
+    return comment;
+  }
 }

@@ -20,7 +20,7 @@ public class Comment extends BaseEntity {
   @Column(name = "comment_id")
   private Long id;
 
-/*  @Column(length = 255, nullable = false)
+  /*  @Column(length = 255, nullable = false)
   private String commentAddress;*/
 
   @Column(nullable = false)
@@ -47,7 +47,7 @@ public class Comment extends BaseEntity {
 
   @Builder
   private Comment(
-      //String commentAddress,
+      // String commentAddress,
       String content,
       Integer studyWeek,
       Integer likeCount,
@@ -55,7 +55,7 @@ public class Comment extends BaseEntity {
       Boolean isNoticed,
       User user,
       Study study) {
-    //this.commentAddress = commentAddress;
+    // this.commentAddress = commentAddress;
     this.content = content;
     this.studyWeek = studyWeek;
     this.likeCount = likeCount;
