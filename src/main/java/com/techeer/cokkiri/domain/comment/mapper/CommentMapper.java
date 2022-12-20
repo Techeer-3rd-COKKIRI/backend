@@ -2,14 +2,23 @@ package com.techeer.cokkiri.domain.comment.mapper;
 
 import com.techeer.cokkiri.domain.comment.dto.CommentDto;
 import com.techeer.cokkiri.domain.comment.entity.Comment;
+import com.techeer.cokkiri.domain.study.entity.Study;
+import com.techeer.cokkiri.domain.user.entity.User;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CommentMapper {
 
-  public static Comment toEntity(CommentDto request) {
+    public Comment toEntity(CommentDto.Request dto, User user, Study study) {
 
-    return Comment.builder()
-        .content(request.getContent())
-        .studyWeek(request.getStudyWeek())
-        .build();
-  }
+        Comment comment =
+                Comment.builder()
+                        .content(dto.getContent())
+                        .studyWeek(dto.getStudyWeek())
+                        .user(user)
+                        .study(study)
+                        .build();
+
+        return comment;
+    }
 }
