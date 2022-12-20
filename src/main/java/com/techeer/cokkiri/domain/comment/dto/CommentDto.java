@@ -2,12 +2,24 @@ package com.techeer.cokkiri.domain.comment.dto;
 
 import lombok.*;
 
-@Builder
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter
+import javax.validation.constraints.NotNull;
+
+
+
 public class CommentDto {
 
-  private Integer studyWeek;
-  private String content;
+    @Builder
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
+    @Getter
+    public static class Request {
+
+        @NotNull
+        private Integer studyWeek;
+        @NotNull
+        private String content;
+        @NotNull
+        private Long studyId;
+    }
+
 }
