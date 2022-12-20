@@ -18,7 +18,11 @@ public enum ErrorCode {
   USER_USERNAME_DUPLICATED(409, "U004", "회원 아이디 중복"),
 
   // Study
-  STUDY_DUPLICATION_ERROR(409, "S001", "스터디의 이름이 중복됨");
+  STUDY_DUPLICATION_ERROR(409, "S001", "스터디의 이름이 중복됨"),
+  STUDY_NOT_FOUND_ERROR(400, "S002", "스터디를 찾을 수 없음"),
+
+  //Comment
+  COMMENT_NOT_FOUND_ERROR(400, "C001", "스터디 회차를 찾을 수 없음");
 
   private final int status;
   private final String code;
