@@ -2,6 +2,7 @@ package com.techeer.cokkiri.domain.user.dto;
 
 import static com.techeer.cokkiri.global.constant.RegExp.PASSWORD_REGEXP;
 
+import io.swagger.annotations.ApiModel;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -12,6 +13,7 @@ import org.hibernate.validator.constraints.URL;
 @Builder
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ApiModel(value = "UserRegisterRequest")
 public class UserRegisterRequest {
 
   @NotBlank(message = "username을 입력해주세요")

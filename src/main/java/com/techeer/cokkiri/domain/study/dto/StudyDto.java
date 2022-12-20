@@ -2,6 +2,7 @@ package com.techeer.cokkiri.domain.study.dto;
 
 import static com.techeer.cokkiri.domain.study.constant.StudyConstants.*;
 
+import io.swagger.annotations.ApiModel;
 import java.time.LocalDate;
 import javax.validation.constraints.Pattern;
 import lombok.*;
@@ -9,6 +10,7 @@ import lombok.*;
 public class StudyDto {
   @Builder
   @AllArgsConstructor(access = AccessLevel.PRIVATE)
+  @ApiModel(value = "StudyInfoRequest")
   public static class Response {
     private Long id;
     private String studyName;
@@ -18,6 +20,7 @@ public class StudyDto {
   @Builder
   @AllArgsConstructor(access = AccessLevel.PRIVATE)
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @ApiModel(value = "StudyCreateRequest")
   public static class Request {
     @Pattern(message = "스터디의 이름은 3자 이상 20자 이하여야 합니다.", regexp = "^.{3,20}$")
     private String studyName;

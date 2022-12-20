@@ -2,6 +2,7 @@ package com.techeer.cokkiri.domain.user.dto;
 
 import static com.techeer.cokkiri.global.constant.RegExp.PASSWORD_REGEXP;
 
+import io.swagger.annotations.ApiModel;
 import javax.validation.constraints.Pattern;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
@@ -12,6 +13,7 @@ public class UserDto {
   @Builder
   @AllArgsConstructor(access = AccessLevel.PRIVATE)
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @ApiModel(value = "UserLoginRequest")
   public static class Request {
 
     @Length(max = 20)
