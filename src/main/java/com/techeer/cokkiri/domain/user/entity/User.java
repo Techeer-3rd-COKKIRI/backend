@@ -42,11 +42,10 @@ public class User extends BaseEntity {
   private List<Comment> comments = new ArrayList<>();
 
   @Builder
-  private User(String username, String nickname, String password, String imageUrl, String bio) {
+  private User(String username, String nickname, String password, String bio) {
     this.username = username;
     this.nickname = nickname;
     this.password = password;
-    this.imageUrl = imageUrl;
     this.bio = bio;
   }
 
