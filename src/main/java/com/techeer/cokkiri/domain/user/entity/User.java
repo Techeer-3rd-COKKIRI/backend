@@ -28,9 +28,6 @@ public class User extends BaseEntity {
   private String password;
 
   @Column(length = 255)
-  private String imageUrl;
-
-  @Column(length = 255)
   private String bio;
 
   // Study와의 다대다 관계 -> 1:N으로 나눠서 구현
