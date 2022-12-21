@@ -1,6 +1,9 @@
 package com.techeer.cokkiri.domain.comment.controller;
 
 import com.techeer.cokkiri.domain.comment.dto.CommentDto;
+import com.techeer.cokkiri.domain.comment.dto.CommentInfo;
+import com.techeer.cokkiri.domain.comment.entity.Comment;
+import com.techeer.cokkiri.domain.comment.mapper.CommentMapper;
 import com.techeer.cokkiri.domain.comment.service.CommentService;
 import com.techeer.cokkiri.domain.study.entity.Study;
 import com.techeer.cokkiri.domain.study.service.StudyService;
@@ -13,11 +16,10 @@ import javax.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
+
+import java.util.List;
 
 @RequestMapping("/api/v1/comments")
 @RestController
@@ -37,5 +39,14 @@ public class CommentController {
     commentService.registerComment(request, user, study);
 
     return ResponseEntity.ok(ResultResponse.of(ResultCode.REGISTER_COMMENT_SUCCESS));
+  }
+
+  @LoginRequired
+  @GetMapping("/{studyWeek}")
+  public ResponseEntity<ResultResponse> findCommentByStudyWeek(@PathVariable Integer studyWeek) {
+
+    List<CommentInfo> comments = commentService.findCommentByStudyWeek(studyWeek);
+
+    return ResponseEntity.ok(ResultResponse.of(ResultCode.COMMENT_FIND_SUCCESS, comments));
   }
 }
