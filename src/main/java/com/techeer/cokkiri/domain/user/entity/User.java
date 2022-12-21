@@ -28,9 +28,6 @@ public class User extends BaseEntity {
   private String password;
 
   @Column(length = 255)
-  private String imageUrl;
-
-  @Column(length = 255)
   private String bio;
 
   // Study와의 다대다 관계 -> 1:N으로 나눠서 구현
@@ -42,11 +39,10 @@ public class User extends BaseEntity {
   private List<Comment> comments = new ArrayList<>();
 
   @Builder
-  private User(String username, String nickname, String password, String imageUrl, String bio) {
+  private User(String username, String nickname, String password, String bio) {
     this.username = username;
     this.nickname = nickname;
     this.password = password;
-    this.imageUrl = imageUrl;
     this.bio = bio;
   }
 
