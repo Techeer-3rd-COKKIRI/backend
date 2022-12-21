@@ -7,7 +7,6 @@ import static com.techeer.cokkiri.global.constant.RegExp.USERNAME_REGEXP;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
 
 public class UserDto {
 
