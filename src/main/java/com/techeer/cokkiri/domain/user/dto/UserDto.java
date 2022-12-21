@@ -24,7 +24,7 @@ public class UserDto {
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   public static class RegisterRequest {
 
-    @Pattern(message = "형식이 맞지 않습니다.", regexp = USERNAME_REGEXP)
+    @Pattern(message = "대소문자나 숫자를 포함한 5-20자리로 입력하세요.", regexp = USERNAME_REGEXP)
     private String username;
 
     @Pattern(
