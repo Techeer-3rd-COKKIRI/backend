@@ -18,7 +18,9 @@ public enum ResultCode {
 
   // study
   STUDY_CREATE_SUCCESS("S001", "스터디 생성 성공"),
-  STUDY_GET_SUCCESS("S002", "스터디 조회 성공");
+  STUDY_GET_SUCCESS("S002", "스터디 조회 성공"),
+  // comment
+  REGISTER_COMMENT_SUCCESS("C001", "댓글 등록 성공");
 
   private final String code;
   private final String message;

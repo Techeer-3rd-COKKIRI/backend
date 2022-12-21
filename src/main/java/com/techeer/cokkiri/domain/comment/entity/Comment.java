@@ -20,9 +20,13 @@ public class Comment extends BaseEntity {
   @Column(name = "comment_id")
   private Long id;
 
-  @Column(length = 255, nullable = false)
-  private String commentAddress;
+  /*  @Column(length = 255, nullable = false)
+  private String commentAddress;*/
 
+  @Column(nullable = false)
+  private String content;
+
+  @Column(nullable = false)
   private Integer studyWeek;
 
   @Column(columnDefinition = "int default 0")
@@ -43,15 +47,21 @@ public class Comment extends BaseEntity {
 
   @Builder
   private Comment(
-      String commentAddress,
+      // String commentAddress,
+      String content,
       Integer studyWeek,
       Integer likeCount,
       Integer dislikeCount,
-      Boolean isNoticed) {
-    this.commentAddress = commentAddress;
+      Boolean isNoticed,
+      User user,
+      Study study) {
+    // this.commentAddress = commentAddress;
+    this.content = content;
     this.studyWeek = studyWeek;
     this.likeCount = likeCount;
     this.dislikeCount = dislikeCount;
     this.isNoticed = isNoticed;
+    this.user = user;
+    this.study = study;
   }
 }
