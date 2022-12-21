@@ -27,6 +27,5 @@ public class UserRegisterRequest {
 
   @URL private String imageUrl;
 
-  @Max(100)
   private String bio;
 }
