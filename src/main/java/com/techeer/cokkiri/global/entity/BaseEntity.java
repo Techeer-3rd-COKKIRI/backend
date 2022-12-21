@@ -6,8 +6,6 @@ import javax.persistence.MappedSuperclass;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Getter
@@ -16,11 +14,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 @ToString
 public class BaseEntity {
-  @CreationTimestamp
-  private LocalDateTime createdAt;
+  @CreationTimestamp private LocalDateTime createdAt;
 
-  @UpdateTimestamp
-  private LocalDateTime updatedAt;
+  @UpdateTimestamp private LocalDateTime updatedAt;
 
   private boolean isDeleted;
 
