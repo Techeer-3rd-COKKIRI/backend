@@ -2,8 +2,6 @@ package com.techeer.cokkiri.domain.comment.controller;
 
 import com.techeer.cokkiri.domain.comment.dto.CommentDto;
 import com.techeer.cokkiri.domain.comment.dto.CommentInfo;
-import com.techeer.cokkiri.domain.comment.entity.Comment;
-import com.techeer.cokkiri.domain.comment.mapper.CommentMapper;
 import com.techeer.cokkiri.domain.comment.service.CommentService;
 import com.techeer.cokkiri.domain.study.entity.Study;
 import com.techeer.cokkiri.domain.study.service.StudyService;
@@ -12,14 +10,13 @@ import com.techeer.cokkiri.global.annotation.LoginRequired;
 import com.techeer.cokkiri.global.annotation.LoginUser;
 import com.techeer.cokkiri.global.result.ResultCode;
 import com.techeer.cokkiri.global.result.ResultResponse;
+import java.util.List;
 import javax.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
-
-import java.util.List;
 
 @RequestMapping("/api/v1/comments")
 @RestController

@@ -10,8 +10,7 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserCommentInfo {
 
-    private String userName;
-    private Long userId;
-    private String imageUrl;
-
+  private String userName;
+  private Long userId;
+  private String imageUrl;
 }
