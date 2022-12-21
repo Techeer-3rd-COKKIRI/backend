@@ -12,7 +12,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Getter
 @MappedSuperclass
-@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
 @ToString
@@ -21,8 +20,7 @@ public class BaseEntity {
 
   @LastModifiedDate private LocalDateTime updatedAt;
 
-  @Column(columnDefinition = "boolean default false")
-  private Boolean isDeleted;
+  private boolean isDeleted;
 
   public void deleteEntity() {
     this.isDeleted = true;
