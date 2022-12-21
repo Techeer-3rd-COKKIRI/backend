@@ -6,7 +6,6 @@ import static com.techeer.cokkiri.global.constant.RegExp.USERNAME_REGEXP;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import lombok.*;
 
 public class UserDto {
@@ -27,9 +26,7 @@ public class UserDto {
     @Pattern(message = "대소문자나 숫자를 포함한 5-20자리로 입력하세요.", regexp = USERNAME_REGEXP)
     private String username;
 
-    @Pattern(
-            message = "대소문자와 숫자, 특수문자를 포함한 8-16자리의 비밀번호를 입력하세요.",
-            regexp = PASSWORD_REGEXP)
+    @Pattern(message = "대소문자와 숫자, 특수문자를 포함한 8-16자리의 비밀번호를 입력하세요.", regexp = PASSWORD_REGEXP)
     private String password;
 
     @NotBlank(message = "닉네임을 입력해주세요")
