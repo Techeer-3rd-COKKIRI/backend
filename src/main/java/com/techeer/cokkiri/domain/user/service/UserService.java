@@ -7,7 +7,6 @@ import com.techeer.cokkiri.domain.user.mapper.UserMapper;
 import com.techeer.cokkiri.domain.user.repository.UserRepository;
 import com.techeer.cokkiri.global.util.PasswordUtil;
 import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -39,10 +39,10 @@ public class LoginService {
 
   public boolean isValidUser(UserDto.LoginRequest userRequest) {
     User user = userService.findByUsername(userRequest.getUsername());
-    boolean isValidPassword = passwordUtil.isSamePassword(userRequest.getPassword(), user.getPassword());
-    if(isValidPassword) {
+    boolean isValidPassword =
+        passwordUtil.isSamePassword(userRequest.getPassword(), user.getPassword());
+    if (isValidPassword) {
       return true;
-    }
-    else throw new UserPasswordWrongException();
+    } else throw new UserPasswordWrongException();
   }
 }
