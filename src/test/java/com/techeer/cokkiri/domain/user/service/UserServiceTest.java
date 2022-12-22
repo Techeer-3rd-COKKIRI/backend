@@ -59,11 +59,7 @@ class UserServiceTest {
 
     @Nested
     class loginTest {
-        @Test
-        @DisplayName("해당 username을 가진 유저가 존재하지 않을 경우 ")
-        void userNotExist() {
 
-        }
 
         @Test
         @DisplayName("username은 존재하나 비밀번호가 다를 경우")
@@ -77,36 +73,5 @@ class UserServiceTest {
                 loginService.isValidUser(loginRequest);
             });
         }
-
-        //dto validation 확인로 컨트롤러에서~
-
-
     }
-
-//    @Nested
-//    class findByUsername {
-//        @Test
-//        @DisplayName("username으로 조회시 default user가 존재")
-//        void userNameExists() {
-//            //given
-//            User user = DEFAULT_USER;
-//            userRepository.save(user);
-//
-//            //when
-//            when(userService.findByUsername(user.getUsername()).thenReturn(user));
-//
-//            //then
-//            assertThat(findByUsernameUser.equals(user));
-//
-//        }
-//
-//        @Test
-//        @DisplayName("username으로 조회시 해당 user가 존재하지 않으면 UserNotFound가 발생함.")
-//        void userNameNotExists() {
-//
-//        }
-//    }
-
-
-
 }
