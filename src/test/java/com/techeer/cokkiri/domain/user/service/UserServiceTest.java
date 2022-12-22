@@ -1,5 +1,10 @@
 package com.techeer.cokkiri.domain.user.service;
 
+import static com.techeer.cokkiri.fixture.UserFixtures.DEFAULT_USER;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
 import com.techeer.cokkiri.domain.user.dto.UserDto;
 import com.techeer.cokkiri.domain.user.entity.User;
 import com.techeer.cokkiri.domain.user.exception.UserPasswordWrongException;
@@ -13,16 +18,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.Optional;
-
-import static com.techeer.cokkiri.fixture.UserFixtures.DEFAULT_USER;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
@@ -42,8 +38,6 @@ class UserServiceTest {
     @InjectMocks
     private LoginService loginService;
 
-
-
     private User user;
     private UserDto.LoginRequest loginRequest;
 
@@ -51,16 +45,15 @@ class UserServiceTest {
     void setup() {
         user = DEFAULT_USER;
 
-        loginRequest =  UserDto.LoginRequest.builder()
-                .username(user.getUsername())
-                .password(user.getPassword())
-                .build();
+        loginRequest =
+                UserDto.LoginRequest.builder()
+                        .username(user.getUsername())
+                        .password(user.getPassword())
+                        .build();
     }
 
     @Nested
     class loginTest {
-
-
         @Test
         @DisplayName("username은 존재하나 비밀번호가 다를 경우")
         void wrongPassword() {
