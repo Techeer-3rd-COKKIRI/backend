@@ -38,10 +38,7 @@ public class CommentMapper {
   }
 
   public static UserCommentInfo toDto(User user) {
-    return UserCommentInfo.builder()
-        .userId(user.getId())
-        .userName(user.getNickname())
-        .build();
+    return UserCommentInfo.builder().userId(user.getId()).userName(user.getNickname()).build();
   }
 
   public List<CommentInfo> toDtoList(List<Comment> comments) {
