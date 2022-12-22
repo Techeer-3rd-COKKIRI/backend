@@ -12,5 +12,4 @@ public class UserCommentInfo {
 
   private String userName;
   private Long userId;
-  private String imageUrl;
 }

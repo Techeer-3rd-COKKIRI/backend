@@ -41,7 +41,6 @@ public class CommentMapper {
     return UserCommentInfo.builder()
         .userId(user.getId())
         .userName(user.getNickname())
-        .imageUrl(user.getImageUrl())
         .build();
   }
 
