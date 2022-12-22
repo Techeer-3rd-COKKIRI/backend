@@ -2,6 +2,7 @@ package com.techeer.cokkiri.domain.user.service;
 
 import static com.techeer.cokkiri.fixture.UserFixtures.DEFAULT_USER;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -50,11 +51,11 @@ class UserServiceTest {
   @Nested
   class loginTest {
     @Test
-    @DisplayName("username은 존재하나 비밀번호가 다를 경우")
+    @DisplayName("username은 존재하나 비밀번호가 다를 경우 로그인 실패한다.")
     void wrongPassword() {
       // given
+      when(userService.findByUsername(any())).thenReturn(user);
       when(passwordUtil.isSamePassword(any(), any())).thenReturn(false);
-      when(userService.findByUsername(any(String.class))).thenReturn(user);
 
       // then
       assertThrows(
@@ -62,6 +63,22 @@ class UserServiceTest {
           () -> {
             loginService.isValidUser(loginRequest);
           });
+    }
+
+    @Test
+    @DisplayName("올바른 username과 비밀번호 입력시 로그인 성공한다.")
+    void loginSuccess() {
+      //given
+      when(userService.findByUsername(any())).thenReturn(user);
+      when(passwordUtil.isSamePassword(any(), any())).thenReturn(true);
+
+      //when
+      boolean isValid = loginService.isValidUser(loginRequest);
+
+      //then
+      assertTrue(isValid);
+
+
     }
   }
 }
