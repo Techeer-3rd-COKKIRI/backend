@@ -2,6 +2,7 @@ package com.techeer.cokkiri.domain.user.service;
 
 import com.techeer.cokkiri.domain.user.dto.UserDto;
 import com.techeer.cokkiri.domain.user.entity.User;
+import com.techeer.cokkiri.domain.user.exception.UserPasswordWrongException;
 import com.techeer.cokkiri.global.util.PasswordUtil;
 import javax.servlet.http.HttpSession;
 import lombok.AccessLevel;
@@ -37,7 +38,11 @@ public class LoginService {
   }
 
   public boolean isValidUser(UserDto.LoginRequest userRequest) {
-    User user = userService.findUserByUsername(userRequest.getUsername());
-    return passwordUtil.isSamePassword(userRequest.getPassword(), user.getPassword());
+    User user = userService.findByUsername(userRequest.getUsername());
+    boolean isValidPassword = passwordUtil.isSamePassword(userRequest.getPassword(), user.getPassword());
+    if(isValidPassword) {
+      return true;
+    }
+    else throw new UserPasswordWrongException();
   }
 }

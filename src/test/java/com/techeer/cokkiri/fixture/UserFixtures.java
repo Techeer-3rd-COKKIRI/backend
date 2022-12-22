@@ -13,7 +13,7 @@ public class UserFixtures {
 
   public static final User DEFAULT_USER =
       User.builder()
-          .username("defaultUser")
+          .username("DefaultUser1")
           .bio("테스트용 디폴트 유저")
           .nickname("default")
           .password("Test1234!")

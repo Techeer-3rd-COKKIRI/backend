@@ -17,6 +17,8 @@ public enum ErrorCode {
   UNAUTHORIZED_ACCESS_ERROR(403, "U003", "승인되지 않은 접근"),
   USER_USERNAME_DUPLICATED(409, "U004", "회원 아이디 중복"),
 
+  USER_PASSWORD_NOT_MATCH(401, "U005", "비밀번호가 일치하지 않음"),
+
   // Study
   STUDY_DUPLICATION_ERROR(409, "S001", "스터디의 이름이 중복됨"),
   STUDY_NOT_FOUND_ERROR(400, "S002", "스터디를 찾을 수 없음"),
