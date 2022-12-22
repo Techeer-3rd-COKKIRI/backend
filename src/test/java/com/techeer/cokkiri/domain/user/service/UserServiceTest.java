@@ -23,48 +23,45 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
 
-    @Mock
-    private UserRepository userRepository;
+  @Mock private UserRepository userRepository;
 
-    @Mock
-    private UserMapper userMapper;
+  @Mock private UserMapper userMapper;
 
-    @Mock
-    private PasswordUtil passwordUtil;
+  @Mock private PasswordUtil passwordUtil;
 
-    @Mock
-    private UserService userService;
+  @Mock private UserService userService;
 
-    @InjectMocks
-    private LoginService loginService;
+  @InjectMocks private LoginService loginService;
 
-    private User user;
-    private UserDto.LoginRequest loginRequest;
+  private User user;
+  private UserDto.LoginRequest loginRequest;
 
-    @BeforeEach
-    void setup() {
-        user = DEFAULT_USER;
+  @BeforeEach
+  void setup() {
+    user = DEFAULT_USER;
 
-        loginRequest =
-                UserDto.LoginRequest.builder()
-                        .username(user.getUsername())
-                        .password(user.getPassword())
-                        .build();
+    loginRequest =
+        UserDto.LoginRequest.builder()
+            .username(user.getUsername())
+            .password(user.getPassword())
+            .build();
+  }
+
+  @Nested
+  class loginTest {
+    @Test
+    @DisplayName("username은 존재하나 비밀번호가 다를 경우")
+    void wrongPassword() {
+      // given
+      when(passwordUtil.isSamePassword(any(), any())).thenReturn(false);
+      when(userService.findByUsername(any(String.class))).thenReturn(user);
+
+      // then
+      assertThrows(
+          UserPasswordWrongException.class,
+          () -> {
+            loginService.isValidUser(loginRequest);
+          });
     }
-
-    @Nested
-    class loginTest {
-        @Test
-        @DisplayName("username은 존재하나 비밀번호가 다를 경우")
-        void wrongPassword() {
-            //given
-            when(passwordUtil.isSamePassword(any(), any())).thenReturn(false);
-            when(userService.findByUsername(any(String.class))).thenReturn(user);
-
-            //then
-            assertThrows(UserPasswordWrongException.class, () -> {
-                loginService.isValidUser(loginRequest);
-            });
-        }
-    }
+  }
 }
