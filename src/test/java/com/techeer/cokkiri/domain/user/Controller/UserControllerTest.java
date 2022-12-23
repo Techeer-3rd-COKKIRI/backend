@@ -5,23 +5,26 @@ import com.techeer.cokkiri.domain.user.service.LoginService;
 import com.techeer.cokkiri.domain.user.service.UserService;
 import com.techeer.cokkiri.global.result.ResultResponse;
 import com.techeer.cokkiri.global.util.JsonUtil;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.filter.CharacterEncodingFilter;
+
+import java.nio.charset.StandardCharsets;
 
 import static com.techeer.cokkiri.fixture.UserFixtures.DEFAULT_USER;
 import static com.techeer.cokkiri.fixture.UserFixtures.USER_LOGIN_REQUEST;
 import static com.techeer.cokkiri.global.result.ResultCode.USER_LOGIN_SUCCESS;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -40,23 +43,29 @@ public class UserControllerTest {
     @MockBean
     LoginService loginService;
 
-    @Autowired
+
     private MockMvc mockMvc;
+
+    @BeforeEach
+    void setUp(WebApplicationContext applicationContext) {
+        mockMvc =
+                MockMvcBuilders.webAppContextSetup(applicationContext)
+                        .addFilter(new CharacterEncodingFilter(StandardCharsets.UTF_8.name(), true))
+                        .build();
+    }
 
     @Test
     @DisplayName("로그인에 성공할 경우 ResultResponse(")
-    @WithMockUser
     void loginTest() throws Exception {
         //given - 회원가입
         when(loginService.isValidUser(any())).thenReturn(true);
         when(userService.findByUsername(any())).thenReturn(DEFAULT_USER);
         //doNothing().when(loginService).login(any(Long.class));
-
-
+        
         mockMvc.perform(post("/api/v1/users/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonUtil.toJsonString(USER_LOGIN_REQUEST))
-                        .with(csrf())
+
                 )
 
                 .andExpect(status().isOk())
