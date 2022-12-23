@@ -1,0 +1,67 @@
+package com.techeer.cokkiri.domain.user.Controller;
+
+import com.techeer.cokkiri.domain.user.controller.UserController;
+import com.techeer.cokkiri.domain.user.service.LoginService;
+import com.techeer.cokkiri.domain.user.service.UserService;
+import com.techeer.cokkiri.global.result.ResultResponse;
+import com.techeer.cokkiri.global.util.JsonUtil;
+import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import static com.techeer.cokkiri.fixture.UserFixtures.*;
+import static com.techeer.cokkiri.global.result.ResultCode.USER_LOGIN_SUCCESS;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@WebMvcTest(UserController.class)
+@AutoConfigureMockMvc
+public class UserControllerTest {
+
+    private final JsonUtil jsonUtil = new JsonUtil();
+
+    @MockBean
+    UserService userService;
+
+    @MockBean
+    LoginService loginService;
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    @DisplayName("로그인에 성공할 경우 ResultResponse(")
+    @WithMockUser
+    void loginTest() throws Exception {
+        //given - 회원가입
+        when(loginService.isValidUser(any())).thenReturn(true);
+        when(userService.findByUsername(any())).thenReturn(DEFAULT_USER);
+        //doNothing().when(loginService).login(anyLong());
+
+
+        mockMvc.perform(post("/api/v1/users/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonUtil.toJsonString(USER_LOGIN_REQUEST))
+                        .with(csrf())
+                )
+
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(jsonUtil.toJsonString(ResultResponse.of(USER_LOGIN_SUCCESS))))
+                .andDo(print()); //전체 메시지 확인
+                System.out.println(content());
+    }
+}

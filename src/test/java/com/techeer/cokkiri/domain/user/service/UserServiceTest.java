@@ -77,8 +77,6 @@ class UserServiceTest {
 
       //then
       assertTrue(isValid);
-
-
     }
   }
 }

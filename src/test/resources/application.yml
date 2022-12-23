@@ -18,3 +18,9 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
