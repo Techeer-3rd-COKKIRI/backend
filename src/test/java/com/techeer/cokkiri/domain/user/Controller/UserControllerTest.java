@@ -5,8 +5,6 @@ import com.techeer.cokkiri.domain.user.service.LoginService;
 import com.techeer.cokkiri.domain.user.service.UserService;
 import com.techeer.cokkiri.global.result.ResultResponse;
 import com.techeer.cokkiri.global.util.JsonUtil;
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,18 +16,20 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static com.techeer.cokkiri.fixture.UserFixtures.*;
+import static com.techeer.cokkiri.fixture.UserFixtures.DEFAULT_USER;
+import static com.techeer.cokkiri.fixture.UserFixtures.USER_LOGIN_REQUEST;
 import static com.techeer.cokkiri.global.result.ResultCode.USER_LOGIN_SUCCESS;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(UserController.class)
+
 @AutoConfigureMockMvc
+@WebMvcTest(UserController.class)
 public class UserControllerTest {
 
     private final JsonUtil jsonUtil = new JsonUtil();
@@ -50,7 +50,7 @@ public class UserControllerTest {
         //given - 회원가입
         when(loginService.isValidUser(any())).thenReturn(true);
         when(userService.findByUsername(any())).thenReturn(DEFAULT_USER);
-        //doNothing().when(loginService).login(anyLong());
+        //doNothing().when(loginService).login(any(Long.class));
 
 
         mockMvc.perform(post("/api/v1/users/login")
