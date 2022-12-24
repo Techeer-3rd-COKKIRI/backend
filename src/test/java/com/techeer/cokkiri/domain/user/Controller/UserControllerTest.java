@@ -54,6 +54,7 @@ public class UserControllerTest {
                         .build();
     }
 
+    //미완성 테스트 - login메소드 오류
     @Test
     @DisplayName("로그인에 성공할 경우 ResultResponse(")
     void loginTest() throws Exception {

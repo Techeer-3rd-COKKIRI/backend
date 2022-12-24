@@ -56,7 +56,7 @@ public class UserController {
 
     if (isValidUser) {
       User user = userService.findByUsername(userRequest.getUsername());
-      //loginService.login(user.getId());
+      loginService.login(user.getId());
     }
     return ResponseEntity.ok(ResultResponse.of(USER_LOGIN_SUCCESS));
   }
