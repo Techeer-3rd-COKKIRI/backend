@@ -32,7 +32,7 @@ public class CommentController {
   public ResponseEntity<ResultResponse> createComment(
       @Valid @RequestBody CommentDto.Request request, @ApiIgnore @LoginUser User user) {
 
-    Study study = studyService.findStudyById(request.getStudyId());
+    Study study = studyService.findByStudyId(request.getStudyId());
 
     commentService.registerComment(request, user, study);
 

@@ -1,22 +1,23 @@
 package com.techeer.cokkiri.domain.study.controller;
 
-import static com.techeer.cokkiri.global.result.ResultCode.STUDY_CREATE_SUCCESS;
-import static com.techeer.cokkiri.global.result.ResultCode.STUDY_GET_SUCCESS;
-
 import com.techeer.cokkiri.domain.study.dto.StudyDto;
-import com.techeer.cokkiri.domain.study.entity.Study;
 import com.techeer.cokkiri.domain.study.exception.StudyDuplicationException;
 import com.techeer.cokkiri.domain.study.service.StudyService;
 import com.techeer.cokkiri.domain.user.entity.User;
 import com.techeer.cokkiri.global.annotation.LoginRequired;
 import com.techeer.cokkiri.global.annotation.LoginUser;
 import com.techeer.cokkiri.global.result.ResultResponse;
-import javax.validation.Valid;
+import io.swagger.annotations.ApiOperation;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
+
+import javax.validation.Valid;
+
+import static com.techeer.cokkiri.global.result.ResultCode.STUDY_CREATE_SUCCESS;
+import static com.techeer.cokkiri.global.result.ResultCode.STUDY_GET_SUCCESS;
 
 @RestController
 @RequestMapping("api/v1/studies")
@@ -35,9 +36,10 @@ public class StudyController {
     return ResponseEntity.ok(ResultResponse.of(STUDY_CREATE_SUCCESS));
   }
 
+  @ApiOperation(value = "스터디 조회")
   @GetMapping("{studyId}")
   public ResponseEntity<ResultResponse> findStudyByStudyId(@PathVariable Long studyId) {
-    Study study = studyService.findByStudyId(studyId);
-    return ResponseEntity.ok(ResultResponse.of(STUDY_GET_SUCCESS, study));
+    StudyDto.FindResponse studyResponse = studyService.findStudyDtoById(studyId);
+    return ResponseEntity.ok(ResultResponse.of(STUDY_GET_SUCCESS, studyResponse));
   }
 }

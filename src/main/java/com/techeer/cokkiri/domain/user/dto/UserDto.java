@@ -1,12 +1,13 @@
 package com.techeer.cokkiri.domain.user.dto;
 
-import static com.techeer.cokkiri.domain.user.constant.UserConstants.*;
-import static com.techeer.cokkiri.global.constant.RegExp.PASSWORD_REGEXP;
-import static com.techeer.cokkiri.global.constant.RegExp.USERNAME_REGEXP;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import lombok.*;
+
+import static com.techeer.cokkiri.domain.user.constant.UserConstants.DEFAULT_BIO;
+import static com.techeer.cokkiri.global.constant.RegExp.PASSWORD_REGEXP;
+import static com.techeer.cokkiri.global.constant.RegExp.USERNAME_REGEXP;
 
 public class UserDto {
 
@@ -46,5 +47,15 @@ public class UserDto {
 
     @Pattern(message = "비밀번호 형식이 맞지 않습니다.", regexp = PASSWORD_REGEXP)
     private String password;
+  }
+
+  @Getter
+  @Builder
+  @AllArgsConstructor(access = AccessLevel.PRIVATE)
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  public static class FindResponse {
+    private String username;
+    private String nickname;
+    private String bio;
   }
 }

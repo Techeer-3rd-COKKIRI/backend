@@ -2,8 +2,10 @@ package com.techeer.cokkiri.domain.study.dto;
 
 import static com.techeer.cokkiri.domain.study.constant.StudyConstants.*;
 
+import com.techeer.cokkiri.domain.user.dto.UserDto;
 import io.swagger.annotations.ApiModel;
 import java.time.LocalDate;
+import java.util.List;
 import javax.validation.constraints.Pattern;
 import lombok.*;
 
@@ -31,5 +33,20 @@ public class StudyDto {
     @Builder.Default private Integer studyCycle = DEFAULT_STUDY_CYCLE;
     @Builder.Default private LocalDate startDate = DEFAULT_START_DATE;
     @Builder.Default private LocalDate finishDate = DEFAULT_FINISH_DATE;
+  }
+
+  @Getter
+  @Builder
+  @AllArgsConstructor(access = AccessLevel.PRIVATE)
+  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  @ApiModel(value = "StudyFindResponse")
+  public static class FindResponse {
+    private UserDto.FindResponse manager;
+    private List<UserDto.FindResponse> users;
+    private String studyName;
+    private Integer userLimit;
+    private String introduction;
+    private Integer studyCycle;
+    private LocalDate finishDate;
   }
 }
