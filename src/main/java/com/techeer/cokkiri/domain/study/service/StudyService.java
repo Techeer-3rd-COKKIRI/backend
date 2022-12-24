@@ -8,11 +8,10 @@ import com.techeer.cokkiri.domain.study.repository.StudyRepository;
 import com.techeer.cokkiri.domain.study.repository.UserStudyRepository;
 import com.techeer.cokkiri.domain.user.entity.User;
 import com.techeer.cokkiri.domain.user.mapper.UserMapper;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)

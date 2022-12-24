@@ -5,10 +5,9 @@ import static com.techeer.cokkiri.domain.study.dto.StudyDto.*;
 import com.techeer.cokkiri.domain.study.dto.StudyDto;
 import com.techeer.cokkiri.domain.study.entity.Study;
 import com.techeer.cokkiri.domain.user.entity.User;
+import com.techeer.cokkiri.domain.user.mapper.UserMapper;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.techeer.cokkiri.domain.user.mapper.UserMapper;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -38,7 +37,8 @@ public class StudyMapper {
 
   public StudyDto.FindResponse toStudyDto(Study study, List<User> users) {
 
-    StudyDto.FindResponse studyFindResponse = StudyDto.FindResponse.builder()
+    StudyDto.FindResponse studyFindResponse =
+        StudyDto.FindResponse.builder()
             .manager(userMapper.toUserDto(study.getManager()))
             .users(userMapper.toFindUserDtoList(users))
             .studyName(study.getStudyName())

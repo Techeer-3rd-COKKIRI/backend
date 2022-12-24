@@ -14,10 +14,10 @@ public class UserMapper {
 
   public UserDto.FindResponse toUserDto(User user) {
     return UserDto.FindResponse.builder()
-                    .username(user.getUsername())
-                    .nickname(user.getNickname())
-                    .bio(user.getBio())
-                    .build();
+        .username(user.getUsername())
+        .nickname(user.getNickname())
+        .bio(user.getBio())
+        .build();
   }
 
   public User toEntity(UserDto.RegisterRequest dto) {

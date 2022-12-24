@@ -1,13 +1,12 @@
 package com.techeer.cokkiri.domain.user.dto;
 
-import lombok.*;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-
 import static com.techeer.cokkiri.domain.user.constant.UserConstants.DEFAULT_BIO;
 import static com.techeer.cokkiri.global.constant.RegExp.PASSWORD_REGEXP;
 import static com.techeer.cokkiri.global.constant.RegExp.USERNAME_REGEXP;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import lombok.*;
 
 public class UserDto {
 
