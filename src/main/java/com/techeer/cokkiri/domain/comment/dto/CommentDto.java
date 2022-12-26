@@ -1,6 +1,9 @@
 package com.techeer.cokkiri.domain.comment.dto;
 
 import javax.validation.constraints.NotNull;
+
+import com.techeer.cokkiri.domain.study.dto.StudyDto;
+import com.techeer.cokkiri.domain.user.dto.UserDto;
 import lombok.*;
 
 public class CommentDto {
@@ -15,4 +18,16 @@ public class CommentDto {
     @NotNull private String content;
     @NotNull private Long studyId;
   }
+
+  @Getter
+  @Builder
+  @AllArgsConstructor(access = AccessLevel.PRIVATE)
+  public static class ResponseInfo {
+    private String content;
+    private Integer likeCount;
+    private Integer dislikeCount;
+    private UserDto.ResponseCommentInfo userCommentInfo;
+    private StudyDto.ResponseCommentInfo studyCommentInfo;
+  }
+
 }
