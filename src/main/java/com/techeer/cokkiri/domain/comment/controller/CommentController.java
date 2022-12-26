@@ -1,7 +1,6 @@
 package com.techeer.cokkiri.domain.comment.controller;
 
 import com.techeer.cokkiri.domain.comment.dto.CommentDto;
-import com.techeer.cokkiri.domain.comment.dto.CommentInfo;
 import com.techeer.cokkiri.domain.comment.service.CommentService;
 import com.techeer.cokkiri.domain.study.entity.Study;
 import com.techeer.cokkiri.domain.study.service.StudyService;
@@ -38,11 +37,10 @@ public class CommentController {
     return ResponseEntity.ok(ResultResponse.of(ResultCode.REGISTER_COMMENT_SUCCESS));
   }
 
-  @LoginRequired
-  @GetMapping("/{studyWeek}")
-  public ResponseEntity<ResultResponse> findCommentByStudyWeek(@PathVariable Integer studyWeek) {
+  @GetMapping("/{studyId}")
+  public ResponseEntity<ResultResponse> findCommentByStudyIdAndStudyWeek(@PathVariable Long studyId, @RequestParam Integer studyWeek) {
 
-    List<CommentInfo> comments = commentService.findCommentByStudyWeek(studyWeek);
+    List<CommentDto.ResponseInfo> comments = commentService.findCommentByStudyIdAndStudyWeek(studyId, studyWeek);
 
     return ResponseEntity.ok(ResultResponse.of(ResultCode.COMMENT_FIND_SUCCESS, comments));
   }
