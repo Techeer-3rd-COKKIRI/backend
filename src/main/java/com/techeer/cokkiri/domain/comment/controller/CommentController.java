@@ -38,9 +38,11 @@ public class CommentController {
   }
 
   @GetMapping("/{studyId}")
-  public ResponseEntity<ResultResponse> findCommentByStudyIdAndStudyWeek(@PathVariable Long studyId, @RequestParam Integer studyWeek) {
+  public ResponseEntity<ResultResponse> findCommentByStudyIdAndStudyWeek(
+      @PathVariable Long studyId, @RequestParam Integer studyWeek) {
 
-    List<CommentDto.ResponseInfo> comments = commentService.findCommentByStudyIdAndStudyWeek(studyId, studyWeek);
+    List<CommentDto.ResponseInfo> comments =
+        commentService.findCommentByStudyIdAndStudyWeek(studyId, studyWeek);
 
     return ResponseEntity.ok(ResultResponse.of(ResultCode.COMMENT_FIND_SUCCESS, comments));
   }

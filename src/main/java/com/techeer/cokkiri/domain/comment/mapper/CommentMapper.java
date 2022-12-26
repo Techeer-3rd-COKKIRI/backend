@@ -6,49 +6,50 @@ import com.techeer.cokkiri.domain.study.dto.StudyDto;
 import com.techeer.cokkiri.domain.study.entity.Study;
 import com.techeer.cokkiri.domain.user.dto.UserDto;
 import com.techeer.cokkiri.domain.user.entity.User;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Component;
 
 @Component
 public class CommentMapper {
 
-    public Comment toEntity(CommentDto.Request dto, User user, Study study) {
+  public Comment toEntity(CommentDto.Request dto, User user, Study study) {
 
-        Comment comment =
-                Comment.builder()
-                        .content(dto.getContent())
-                        .studyWeek(dto.getStudyWeek())
-                        .user(user)
-                        .study(study)
-                        .build();
+    Comment comment =
+        Comment.builder()
+            .content(dto.getContent())
+            .studyWeek(dto.getStudyWeek())
+            .user(user)
+            .study(study)
+            .build();
 
-        return comment;
-    }
+    return comment;
+  }
 
-    public CommentDto.ResponseInfo toDto(Comment comment) {
-        CommentDto.ResponseInfo info =
-                CommentDto.ResponseInfo.builder()
-                        .content(comment.getContent())
-                        .likeCount(comment.getLikeCount())
-                        .dislikeCount(comment.getDislikeCount())
-                        .studyCommentInfo(toDto(comment.getStudy()))
-                        .userCommentInfo(toDto(comment.getUser()))
-                        .build();
-        return info;
-    }
+  public CommentDto.ResponseInfo toDto(Comment comment) {
+    CommentDto.ResponseInfo info =
+        CommentDto.ResponseInfo.builder()
+            .content(comment.getContent())
+            .likeCount(comment.getLikeCount())
+            .dislikeCount(comment.getDislikeCount())
+            .studyCommentInfo(toDto(comment.getStudy()))
+            .userCommentInfo(toDto(comment.getUser()))
+            .build();
+    return info;
+  }
 
-    public StudyDto.ResponseCommentInfo toDto(Study study) {
-        return StudyDto.ResponseCommentInfo.builder().studyId(study.getId()).build();
-    }
+  public StudyDto.ResponseCommentInfo toDto(Study study) {
+    return StudyDto.ResponseCommentInfo.builder().studyId(study.getId()).build();
+  }
 
-    public UserDto.ResponseCommentInfo toDto(User user) {
-        return UserDto.ResponseCommentInfo.builder().userId(user.getId()).userName(user.getNickname()).build();
-    }
+  public UserDto.ResponseCommentInfo toDto(User user) {
+    return UserDto.ResponseCommentInfo.builder()
+        .userId(user.getId())
+        .userName(user.getNickname())
+        .build();
+  }
 
-    public List<CommentDto.ResponseInfo> toDtoList(List<Comment> comments) {
-        return comments.stream().map(this::toDto).collect(Collectors.toList());
-    }
+  public List<CommentDto.ResponseInfo> toDtoList(List<Comment> comments) {
+    return comments.stream().map(this::toDto).collect(Collectors.toList());
+  }
 }
