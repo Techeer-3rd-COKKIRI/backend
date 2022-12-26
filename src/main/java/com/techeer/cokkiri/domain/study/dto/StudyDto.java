@@ -38,7 +38,6 @@ public class StudyDto {
   @Getter
   @Builder
   @AllArgsConstructor(access = AccessLevel.PRIVATE)
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @ApiModel(value = "StudyFindResponse")
   public static class FindResponse {
     private UserDto.FindResponse manager;
@@ -48,5 +47,13 @@ public class StudyDto {
     private String introduction;
     private Integer studyCycle;
     private LocalDate finishDate;
+  }
+
+  @Getter
+  @Builder
+  @AllArgsConstructor(access = AccessLevel.PRIVATE)
+  public static class ResponseCommentInfo {
+
+    private Long studyId;
   }
 }
