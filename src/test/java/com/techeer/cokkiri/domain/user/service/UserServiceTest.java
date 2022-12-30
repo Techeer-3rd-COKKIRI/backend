@@ -61,7 +61,7 @@ class UserServiceTest {
       assertThrows(
           UserPasswordWrongException.class,
           () -> {
-            loginService.isValidUser(loginRequest);
+            loginService.isValidPassword(loginRequest);
           });
     }
 
@@ -73,7 +73,7 @@ class UserServiceTest {
       when(passwordUtil.isSamePassword(any(), any())).thenReturn(true);
 
       // when
-      boolean isValid = loginService.isValidUser(loginRequest);
+      boolean isValid = loginService.isValidPassword(loginRequest);
 
       // then
       assertTrue(isValid);

@@ -37,7 +37,7 @@ public class LoginService {
     return getLoginUserId() != null;
   }
 
-  public boolean isValidUser(UserDto.LoginRequest userRequest) {
+  public boolean isValidPassword(UserDto.LoginRequest userRequest) {
     User user = userService.findByUsername(userRequest.getUsername());
     boolean isValidPassword =
         passwordUtil.isSamePassword(userRequest.getPassword(), user.getPassword());

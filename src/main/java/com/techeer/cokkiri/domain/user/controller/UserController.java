@@ -51,9 +51,9 @@ public class UserController {
   @PostMapping("/login")
   public ResponseEntity<ResultResponse> login(
       @RequestBody @Valid UserDto.LoginRequest userRequest) {
-    boolean isValidUser = loginService.isValidUser(userRequest);
+    boolean isValid = loginService.isValidPassword(userRequest);
 
-    if (isValidUser) {
+    if (isValid) {
       User user = userService.findByUsername(userRequest.getUsername());
       loginService.login(user.getId());
     }

@@ -1,7 +1,6 @@
 package com.techeer.cokkiri.domain.user.repository;
 
 import static com.techeer.cokkiri.fixture.UserFixtures.DEFAULT_USER;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

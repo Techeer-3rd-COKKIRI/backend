@@ -57,7 +57,7 @@ public class UserControllerTest {
   @DisplayName("로그인에 성공할 경우 ResultResponse(")
   void loginTest() throws Exception {
     // given - 회원가입
-    when(loginService.isValidUser(any())).thenReturn(true);
+    when(loginService.isValidPassword(any())).thenReturn(true);
     when(userService.findByUsername(any())).thenReturn(mockUser);
     when(mockUser.getId()).thenReturn(1L);
 
