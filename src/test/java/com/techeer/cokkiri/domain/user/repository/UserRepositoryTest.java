@@ -2,8 +2,10 @@ package com.techeer.cokkiri.domain.user.repository;
 
 import static com.techeer.cokkiri.fixture.UserFixtures.DEFAULT_USER;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.techeer.cokkiri.domain.user.entity.User;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +16,23 @@ public class UserRepositoryTest {
 
   @Autowired private UserRepository userRepository;
 
-  @Test
-  @DisplayName("username으로 user를 조회할 수 있다.")
-  void userExists() {
+  private User user;
 
-    User user = DEFAULT_USER;
+  @BeforeEach
+  void saveUser() {
+    user = DEFAULT_USER;
     userRepository.save(user);
+  }
 
-    assertEquals(user.getUsername(), "defaultUser");
+  @Test
+  @DisplayName("user의 존재여부를 username으로 확인한다.")
+  void existsByUsername() {
+    assertTrue(userRepository.existsByUsername(user.getUsername()));
+  }
+
+  @Test
+  @DisplayName("username으로 user를 찾는다.")
+  void findByUsername() {
+    assertEquals(userRepository.findByUsername(user.getUsername()).orElseThrow(),user);
   }
 }

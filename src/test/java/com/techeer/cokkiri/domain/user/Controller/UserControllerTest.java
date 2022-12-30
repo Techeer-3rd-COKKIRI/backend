@@ -1,6 +1,7 @@
 package com.techeer.cokkiri.domain.user.Controller;
 
 import com.techeer.cokkiri.domain.user.controller.UserController;
+import com.techeer.cokkiri.domain.user.entity.User;
 import com.techeer.cokkiri.domain.user.service.LoginService;
 import com.techeer.cokkiri.domain.user.service.UserService;
 import com.techeer.cokkiri.global.result.ResultResponse;
@@ -8,6 +9,7 @@ import com.techeer.cokkiri.global.util.JsonUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -43,6 +45,9 @@ public class UserControllerTest {
     @MockBean
     LoginService loginService;
 
+    @Mock
+    User mockUser;
+
 
     private MockMvc mockMvc;
 
@@ -60,8 +65,8 @@ public class UserControllerTest {
     void loginTest() throws Exception {
         //given - 회원가입
         when(loginService.isValidUser(any())).thenReturn(true);
-        when(userService.findByUsername(any())).thenReturn(DEFAULT_USER);
-        //doNothing().when(loginService).login(any(Long.class));
+        when(userService.findByUsername(any())).thenReturn(mockUser);
+        when(mockUser.getId()).thenReturn(1L);
         
         mockMvc.perform(post("/api/v1/users/login")
                         .contentType(MediaType.APPLICATION_JSON)
