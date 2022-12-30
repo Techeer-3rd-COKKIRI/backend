@@ -68,14 +68,14 @@ class UserServiceTest {
     @Test
     @DisplayName("올바른 username과 비밀번호 입력시 로그인 성공한다.")
     void loginSuccess() {
-      //given
+      // given
       when(userService.findByUsername(any())).thenReturn(user);
       when(passwordUtil.isSamePassword(any(), any())).thenReturn(true);
 
-      //when
+      // when
       boolean isValid = loginService.isValidUser(loginRequest);
 
-      //then
+      // then
       assertTrue(isValid);
     }
   }

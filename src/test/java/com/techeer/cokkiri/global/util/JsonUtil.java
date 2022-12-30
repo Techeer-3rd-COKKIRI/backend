@@ -4,11 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonUtil {
-    private final ObjectMapper objectMapper = new ObjectMapper();
+  private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public String toJsonString(Object object) throws JsonProcessingException {
-        return objectMapper.writeValueAsString(object);
-    }
-
-
+  public String toJsonString(Object object) throws JsonProcessingException {
+    return objectMapper.writeValueAsString(object);
+  }
 }
