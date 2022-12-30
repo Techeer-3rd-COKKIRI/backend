@@ -1,6 +1,7 @@
 package com.techeer.cokkiri.domain.user.repository;
 
 import static com.techeer.cokkiri.fixture.UserFixtures.DEFAULT_USER;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -20,19 +21,26 @@ public class UserRepositoryTest {
 
   @BeforeEach
   void saveUser() {
-    user = DEFAULT_USER;
-    userRepository.save(user);
+
   }
 
   @Test
   @DisplayName("user의 존재여부를 username으로 확인한다.")
   void existsByUsername() {
+    user = DEFAULT_USER;
+    userRepository.save(user);
     assertTrue(userRepository.existsByUsername(user.getUsername()));
   }
 
   @Test
   @DisplayName("username으로 user를 찾는다.")
   void findByUsername() {
-    assertEquals(userRepository.findByUsername(user.getUsername()).orElseThrow(),user);
+    //given
+    user = DEFAULT_USER;
+    user = userRepository.save(user);
+    User savedUser = userRepository.findByUsername(user.getUsername()).orElseThrow();
+    assertEquals(user, savedUser);
+    //then
+
   }
 }
