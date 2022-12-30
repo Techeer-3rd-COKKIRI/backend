@@ -39,8 +39,8 @@ public class UserRepositoryTest {
     user = DEFAULT_USER;
     user = userRepository.save(user);
     User savedUser = userRepository.findByUsername(user.getUsername()).orElseThrow();
-    assertEquals(user, savedUser);
-    //then
 
+    //then
+    assertEquals(user, savedUser);
   }
 }
