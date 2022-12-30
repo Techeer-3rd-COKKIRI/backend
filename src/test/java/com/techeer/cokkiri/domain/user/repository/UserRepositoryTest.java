@@ -19,9 +19,7 @@ public class UserRepositoryTest {
   private User user;
 
   @BeforeEach
-  void saveUser() {
-
-  }
+  void saveUser() {}
 
   @Test
   @DisplayName("user의 존재여부를 username으로 확인한다.")
@@ -34,12 +32,12 @@ public class UserRepositoryTest {
   @Test
   @DisplayName("username으로 user를 찾는다.")
   void findByUsername() {
-    //given
+    // given
     user = DEFAULT_USER;
     user = userRepository.save(user);
     User savedUser = userRepository.findByUsername(user.getUsername()).orElseThrow();
 
-    //then
+    // then
     assertEquals(user, savedUser);
   }
 }
