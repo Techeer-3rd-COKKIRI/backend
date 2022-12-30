@@ -1,11 +1,21 @@
 package com.techeer.cokkiri.domain.user.Controller;
 
+import static com.techeer.cokkiri.fixture.UserFixtures.USER_LOGIN_REQUEST;
+import static com.techeer.cokkiri.global.result.ResultCode.USER_LOGIN_SUCCESS;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import com.techeer.cokkiri.domain.user.controller.UserController;
 import com.techeer.cokkiri.domain.user.entity.User;
 import com.techeer.cokkiri.domain.user.service.LoginService;
 import com.techeer.cokkiri.domain.user.service.UserService;
 import com.techeer.cokkiri.global.result.ResultResponse;
 import com.techeer.cokkiri.global.util.JsonUtil;
+import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,63 +30,47 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
-import java.nio.charset.StandardCharsets;
-
-import static com.techeer.cokkiri.fixture.UserFixtures.DEFAULT_USER;
-import static com.techeer.cokkiri.fixture.UserFixtures.USER_LOGIN_REQUEST;
-import static com.techeer.cokkiri.global.result.ResultCode.USER_LOGIN_SUCCESS;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-
 @AutoConfigureMockMvc
 @WebMvcTest(UserController.class)
 public class UserControllerTest {
 
-    private final JsonUtil jsonUtil = new JsonUtil();
+  private final JsonUtil jsonUtil = new JsonUtil();
 
-    @MockBean
-    UserService userService;
+  @MockBean UserService userService;
 
-    @MockBean
-    LoginService loginService;
+  @MockBean LoginService loginService;
 
-    @Mock
-    User mockUser;
+  @Mock User mockUser;
 
+  private MockMvc mockMvc;
 
-    private MockMvc mockMvc;
+  @BeforeEach
+  void setUp(WebApplicationContext applicationContext) {
+    mockMvc =
+        MockMvcBuilders.webAppContextSetup(applicationContext)
+            .addFilter(new CharacterEncodingFilter(StandardCharsets.UTF_8.name(), true))
+            .build();
+  }
 
-    @BeforeEach
-    void setUp(WebApplicationContext applicationContext) {
-        mockMvc =
-                MockMvcBuilders.webAppContextSetup(applicationContext)
-                        .addFilter(new CharacterEncodingFilter(StandardCharsets.UTF_8.name(), true))
-                        .build();
-    }
+  // 미완성 테스트 - login메소드 오류
+  @Test
+  @DisplayName("로그인에 성공할 경우 ResultResponse(")
+  void loginTest() throws Exception {
+    // given - 회원가입
+    when(loginService.isValidUser(any())).thenReturn(true);
+    when(userService.findByUsername(any())).thenReturn(mockUser);
+    when(mockUser.getId()).thenReturn(1L);
 
-    //미완성 테스트 - login메소드 오류
-    @Test
-    @DisplayName("로그인에 성공할 경우 ResultResponse(")
-    void loginTest() throws Exception {
-        //given - 회원가입
-        when(loginService.isValidUser(any())).thenReturn(true);
-        when(userService.findByUsername(any())).thenReturn(mockUser);
-        when(mockUser.getId()).thenReturn(1L);
-        
-        mockMvc.perform(post("/api/v1/users/login")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(jsonUtil.toJsonString(USER_LOGIN_REQUEST))
-
-                )
-
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(jsonUtil.toJsonString(ResultResponse.of(USER_LOGIN_SUCCESS))))
-                .andDo(print()); //전체 메시지 확인
-                System.out.println(content());
-    }
+    mockMvc
+        .perform(
+            post("/api/v1/users/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonUtil.toJsonString(USER_LOGIN_REQUEST)))
+        .andExpect(status().isOk())
+        .andExpect(
+            MockMvcResultMatchers.content()
+                .string(jsonUtil.toJsonString(ResultResponse.of(USER_LOGIN_SUCCESS))))
+        .andDo(print()); // 전체 메시지 확인
+    System.out.println(content());
+  }
 }

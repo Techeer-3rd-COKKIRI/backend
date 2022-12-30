@@ -33,6 +33,6 @@ public class UserRepositoryTest {
   @Test
   @DisplayName("username으로 user를 찾는다.")
   void findByUsername() {
-    assertEquals(userRepository.findByUsername(user.getUsername()).orElseThrow(),user);
+    assertEquals(userRepository.findByUsername(user.getUsername()).orElseThrow(), user);
   }
 }
