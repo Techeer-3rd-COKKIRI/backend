@@ -7,12 +7,11 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.techeer.cokkiri.domain.user.entity.QUser;
 import com.techeer.cokkiri.domain.user.entity.User;
 import com.techeer.cokkiri.domain.user.repository.UserRepository;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @SpringBootTest
 public class QueryDslTest {
