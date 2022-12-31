@@ -7,7 +7,6 @@ public class UserFixtures {
       User.builder()
           .username("javaStudyManager")
           .bio("자바를 좋아합니다.")
-          .imageUrl("url")
           .nickname("javaMania")
           .password("qwer123!")
           .build();
