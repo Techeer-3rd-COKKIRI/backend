@@ -51,7 +51,14 @@ public class UserDto {
   @Getter
   @Builder
   @AllArgsConstructor(access = AccessLevel.PRIVATE)
-  @NoArgsConstructor(access = AccessLevel.PRIVATE)
+  public static class ResponseCommentInfo {
+    private String userName;
+    private Long userId;
+  }
+
+  @Getter
+  @Builder
+  @AllArgsConstructor(access = AccessLevel.PRIVATE)
   public static class FindResponse {
     private String username;
     private String nickname;

@@ -9,14 +9,12 @@ import com.techeer.cokkiri.global.annotation.LoginRequired;
 import com.techeer.cokkiri.global.annotation.LoginUser;
 import com.techeer.cokkiri.global.result.ResultCode;
 import com.techeer.cokkiri.global.result.ResultResponse;
+import java.util.List;
 import javax.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 @RequestMapping("/api/v1/comments")
@@ -30,12 +28,22 @@ public class CommentController {
   @LoginRequired
   @PostMapping
   public ResponseEntity<ResultResponse> createComment(
-      @Valid @RequestBody CommentDto.Request request, @ApiIgnore @LoginUser User user) {
+          @Valid @RequestBody CommentDto.CreateRequest request, @ApiIgnore @LoginUser User user) {
 
     Study study = studyService.findByStudyId(request.getStudyId());
 
     commentService.registerComment(request, user, study);
 
     return ResponseEntity.ok(ResultResponse.of(ResultCode.REGISTER_COMMENT_SUCCESS));
+  }
+
+  @GetMapping("/{studyId}")
+  public ResponseEntity<ResultResponse> findCommentByStudyIdAndStudyWeek(
+      @PathVariable Long studyId, @RequestParam Integer studyWeek) {
+
+    List<CommentDto.ResponseInfo> comments =
+        commentService.findCommentByStudyIdAndStudyWeek(studyId, studyWeek);
+
+    return ResponseEntity.ok(ResultResponse.of(ResultCode.COMMENT_FIND_SUCCESS, comments));
   }
 }

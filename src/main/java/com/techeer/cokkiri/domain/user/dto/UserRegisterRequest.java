@@ -3,7 +3,6 @@ package com.techeer.cokkiri.domain.user.dto;
 import static com.techeer.cokkiri.global.constant.RegExp.PASSWORD_REGEXP;
 
 import io.swagger.annotations.ApiModel;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import lombok.*;
@@ -27,6 +26,5 @@ public class UserRegisterRequest {
 
   @URL private String imageUrl;
 
-  @Max(100)
   private String bio;
 }
