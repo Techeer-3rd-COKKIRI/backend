@@ -28,7 +28,7 @@ public class CommentController {
   @LoginRequired
   @PostMapping
   public ResponseEntity<ResultResponse> createComment(
-      @Valid @RequestBody CommentDto.Request request, @ApiIgnore @LoginUser User user) {
+          @Valid @RequestBody CommentDto.CreateRequest request, @ApiIgnore @LoginUser User user) {
 
     Study study = studyService.findByStudyId(request.getStudyId());
 

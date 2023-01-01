@@ -21,7 +21,7 @@ public class CommentService {
 
   private final CommentMapper commentMapper;
 
-  public void registerComment(CommentDto.Request commentDto, User user, Study study) {
+  public void registerComment(CommentDto.CreateRequest commentDto, User user, Study study) {
 
     Comment comment = commentMapper.toEntity(commentDto, user, study);
 

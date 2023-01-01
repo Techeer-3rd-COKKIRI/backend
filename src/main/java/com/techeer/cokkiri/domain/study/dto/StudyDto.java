@@ -48,12 +48,4 @@ public class StudyDto {
     private Integer studyCycle;
     private LocalDate finishDate;
   }
-
-  @Getter
-  @Builder
-  @AllArgsConstructor(access = AccessLevel.PRIVATE)
-  public static class ResponseCommentInfo {
-
-    private Long studyId;
-  }
 }

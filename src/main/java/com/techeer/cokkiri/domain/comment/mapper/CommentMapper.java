@@ -2,7 +2,6 @@ package com.techeer.cokkiri.domain.comment.mapper;
 
 import com.techeer.cokkiri.domain.comment.dto.CommentDto;
 import com.techeer.cokkiri.domain.comment.entity.Comment;
-import com.techeer.cokkiri.domain.study.dto.StudyDto;
 import com.techeer.cokkiri.domain.study.entity.Study;
 import com.techeer.cokkiri.domain.user.dto.UserDto;
 import com.techeer.cokkiri.domain.user.entity.User;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommentMapper {
 
-  public Comment toEntity(CommentDto.Request dto, User user, Study study) {
+  public Comment toEntity(CommentDto.CreateRequest dto, User user, Study study) {
 
     Comment comment =
         Comment.builder()
@@ -32,14 +31,9 @@ public class CommentMapper {
             .content(comment.getContent())
             .likeCount(comment.getLikeCount())
             .dislikeCount(comment.getDislikeCount())
-            .studyCommentInfo(toDto(comment.getStudy()))
             .userCommentInfo(toDto(comment.getUser()))
             .build();
     return info;
-  }
-
-  public StudyDto.ResponseCommentInfo toDto(Study study) {
-    return StudyDto.ResponseCommentInfo.builder().studyId(study.getId()).build();
   }
 
   public UserDto.ResponseCommentInfo toDto(User user) {
