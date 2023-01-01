@@ -3,7 +3,10 @@ package com.techeer.cokkiri.domain.user.entity;
 import com.techeer.cokkiri.domain.study.entity.Study;
 import com.techeer.cokkiri.global.entity.BaseEntity;
 import javax.persistence.*;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 
 @Getter

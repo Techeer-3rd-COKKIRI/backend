@@ -1,6 +1,7 @@
 package com.techeer.cokkiri.domain.study.controller;
 
 import static com.techeer.cokkiri.global.result.ResultCode.STUDY_CREATE_SUCCESS;
+import static com.techeer.cokkiri.global.result.ResultCode.STUDY_GET_SUCCESS;
 
 import com.techeer.cokkiri.domain.study.dto.StudyDto;
 import com.techeer.cokkiri.domain.study.exception.StudyDuplicationException;
@@ -9,6 +10,7 @@ import com.techeer.cokkiri.domain.user.entity.User;
 import com.techeer.cokkiri.global.annotation.LoginRequired;
 import com.techeer.cokkiri.global.annotation.LoginUser;
 import com.techeer.cokkiri.global.result.ResultResponse;
+import io.swagger.annotations.ApiOperation;
 import javax.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -31,5 +33,12 @@ public class StudyController {
     }
     studyService.createStudy(studyRequest, loginUser);
     return ResponseEntity.ok(ResultResponse.of(STUDY_CREATE_SUCCESS));
+  }
+
+  @ApiOperation(value = "스터디 조회")
+  @GetMapping("{studyId}")
+  public ResponseEntity<ResultResponse> findStudyByStudyId(@PathVariable Long studyId) {
+    StudyDto.FindResponse studyResponse = studyService.findStudyDtoById(studyId);
+    return ResponseEntity.ok(ResultResponse.of(STUDY_GET_SUCCESS, studyResponse));
   }
 }
