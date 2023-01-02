@@ -8,6 +8,7 @@ import com.techeer.cokkiri.domain.user.entity.User;
 import com.techeer.cokkiri.domain.user.mapper.UserMapper;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -53,5 +54,9 @@ public class StudyMapper {
 
   public List<InfoResponse> toDtoList(List<Study> list) {
     return list.stream().map(this::toDto).collect(Collectors.toList());
+  }
+
+  public Page<InfoResponse> toDtoList(Page<Study> studyList) {
+    return studyList.map(this::toDto);
   }
 }
