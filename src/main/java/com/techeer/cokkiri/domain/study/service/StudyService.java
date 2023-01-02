@@ -43,7 +43,7 @@ public class StudyService {
 
     Study study = studyRepository.findById(studyId).orElseThrow(StudyNotFoundException::new);
     List<User> studyMembers = userStudyRepository.findByStudyId(studyId);
-    StudyDto.FindResponse studyFindResponse = studyMapper.toStudyDto(study, studyMembers);
+    StudyDto.FindResponse studyFindResponse = studyMapper.toDto(study, studyMembers);
 
     return studyFindResponse;
   }

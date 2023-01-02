@@ -15,8 +15,8 @@ public class StudyMapper {
 
   private UserMapper userMapper = new UserMapper();
 
-  public Response toDto(Study study) {
-    return Response.builder().studyName(study.getStudyName()).build();
+  public InfoResponse toDto(Study study) {
+    return InfoResponse.builder().id(study.getId()).studyName(study.getStudyName()).build();
   }
 
   public Study toEntity(Request dto, User manager) {
@@ -35,7 +35,7 @@ public class StudyMapper {
     return study;
   }
 
-  public StudyDto.FindResponse toStudyDto(Study study, List<User> users) {
+  public StudyDto.FindResponse toDto(Study study, List<User> users) {
 
     StudyDto.FindResponse studyFindResponse =
         StudyDto.FindResponse.builder()
@@ -51,7 +51,7 @@ public class StudyMapper {
     return studyFindResponse;
   }
 
-  public List<Response> toDtoList(List<Study> list) {
+  public List<InfoResponse> toDtoList(List<Study> list) {
     return list.stream().map(this::toDto).collect(Collectors.toList());
   }
 }

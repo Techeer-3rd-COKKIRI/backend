@@ -10,10 +10,11 @@ import javax.validation.constraints.Pattern;
 import lombok.*;
 
 public class StudyDto {
+  @Getter
   @Builder
   @AllArgsConstructor(access = AccessLevel.PRIVATE)
   @ApiModel(value = "StudyInfoRequest")
-  public static class Response {
+  public static class InfoResponse {
     private Long id;
     private String studyName;
   }
