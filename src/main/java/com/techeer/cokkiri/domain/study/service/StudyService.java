@@ -7,10 +7,11 @@ import com.techeer.cokkiri.domain.study.mapper.StudyMapper;
 import com.techeer.cokkiri.domain.study.repository.StudyRepository;
 import com.techeer.cokkiri.domain.study.repository.UserStudyRepository;
 import com.techeer.cokkiri.domain.user.entity.User;
-import com.techeer.cokkiri.domain.user.mapper.UserMapper;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,7 +21,6 @@ public class StudyService {
   private final StudyRepository studyRepository;
   private final UserStudyRepository userStudyRepository;
   private final StudyMapper studyMapper;
-  private final UserMapper userMapper;
 
   public Study createStudy(StudyDto.Request requestDto, User loginUser) { // 스터디 등록
     Study study = studyMapper.toEntity(requestDto, loginUser);
@@ -43,8 +43,13 @@ public class StudyService {
 
     Study study = studyRepository.findById(studyId).orElseThrow(StudyNotFoundException::new);
     List<User> studyMembers = userStudyRepository.findByStudyId(studyId);
-    StudyDto.FindResponse studyFindResponse = studyMapper.toStudyDto(study, studyMembers);
+    StudyDto.FindResponse studyFindResponse = studyMapper.toDto(study, studyMembers);
 
     return studyFindResponse;
+  }
+
+  public List<StudyDto.InfoResponse> getStudyListWithPaging(PageRequest pageRequest) {
+    Page<Study> studyPages = studyRepository.findAll(pageRequest);
+    return studyMapper.toDtoList(studyPages).getContent();
   }
 }

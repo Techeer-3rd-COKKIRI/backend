@@ -1,9 +1,7 @@
 package com.techeer.cokkiri.domain.comment.dto;
 
 import com.techeer.cokkiri.domain.user.dto.UserDto;
-
 import javax.validation.constraints.*;
-
 import lombok.*;
 
 public class CommentDto {
