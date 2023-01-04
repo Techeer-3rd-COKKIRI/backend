@@ -27,6 +27,4 @@ public class UserMapper {
   public List<UserDto.RegisterResponse> toDtoList(List<User> list) {
     return list.stream().map(this::toDto).collect(Collectors.toList());
   }
-
-
 }
