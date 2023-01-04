@@ -28,11 +28,11 @@ public class CommentController {
   @LoginRequired
   @PostMapping
   public ResponseEntity<ResultResponse> createComment(
-      @Valid @RequestBody CommentDto.CreateRequest request, @ApiIgnore @LoginUser User user) {
+      @Valid @RequestBody CommentDto.CreateRequest createRequest, @ApiIgnore @LoginUser User user) {
 
-    Study study = studyService.findByStudyId(request.getStudyId());
+    Study study = studyService.findByStudyId(createRequest.getStudyId());
 
-    commentService.registerComment(request, user, study);
+    commentService.registerComment(createRequest, user, study);
 
     return ResponseEntity.ok(ResultResponse.of(ResultCode.REGISTER_COMMENT_SUCCESS));
   }
@@ -41,9 +41,9 @@ public class CommentController {
   public ResponseEntity<ResultResponse> findCommentByStudyIdAndStudyWeek(
       @PathVariable Long studyId, @RequestParam Integer studyWeek) {
 
-    List<CommentDto.ResponseInfo> comments =
+    List<CommentDto.InfoResponse> infoResponseList =
         commentService.findCommentByStudyIdAndStudyWeek(studyId, studyWeek);
 
-    return ResponseEntity.ok(ResultResponse.of(ResultCode.COMMENT_FIND_SUCCESS, comments));
+    return ResponseEntity.ok(ResultResponse.of(ResultCode.COMMENT_FIND_SUCCESS, infoResponseList));
   }
 }

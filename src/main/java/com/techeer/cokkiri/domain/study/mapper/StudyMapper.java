@@ -20,7 +20,7 @@ public class StudyMapper {
     return InfoResponse.builder().id(study.getId()).studyName(study.getStudyName()).build();
   }
 
-  public Study toEntity(Request dto, User manager) {
+  public Study toEntity(CreateRequest dto, User manager) {
     Study study =
         Study.builder()
             .studyName(dto.getStudyName())

@@ -28,7 +28,7 @@ public class CommentService {
     commentRepository.save(comment);
   }
 
-  public List<CommentDto.ResponseInfo> findCommentByStudyIdAndStudyWeek(
+  public List<CommentDto.InfoResponse> findCommentByStudyIdAndStudyWeek(
       Long studyId, Integer studyWeek) {
     List<Comment> comments =
         commentRepository.findByStudyWeek(studyWeek).orElseThrow(CommentNotFoundException::new);

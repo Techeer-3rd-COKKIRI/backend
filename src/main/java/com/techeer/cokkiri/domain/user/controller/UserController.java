@@ -30,11 +30,11 @@ public class UserController {
   @ApiOperation(value = "회원가입")
   @PostMapping
   public ResponseEntity<ResultResponse> registration(
-      @RequestBody @Valid UserDto.RegisterRequest userRequest) {
-    if (userService.isDuplicatedUsername(userRequest.getUsername())) {
+      @RequestBody @Valid UserDto.RegisterRequest registerRequest) {
+    if (userService.isDuplicatedUsername(registerRequest.getUsername())) {
       throw new UserDuplicatedException();
     }
-    userService.register(userRequest);
+    userService.register(registerRequest);
     return ResponseEntity.ok(ResultResponse.of(USER_REGISTRATION_SUCCESS));
   }
 
@@ -52,11 +52,11 @@ public class UserController {
   @ApiOperation(value = "로그인")
   @PostMapping("/login")
   public ResponseEntity<ResultResponse> login(
-      @RequestBody @Valid UserDto.LoginRequest userRequest) {
-    boolean isValidUser = loginService.isValidUser(userRequest);
+      @RequestBody @Valid UserDto.LoginRequest loginRequest) {
+    boolean isValidUser = loginService.isValidUser(loginRequest);
 
     if (isValidUser) {
-      User user = userService.findUserByUsername(userRequest.getUsername());
+      User user = userService.findUserByUsername(loginRequest.getUsername());
       loginService.login(user.getId());
     }
     return ResponseEntity.ok(ResultResponse.of(USER_LOGIN_SUCCESS));
