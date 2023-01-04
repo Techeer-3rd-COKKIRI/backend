@@ -26,6 +26,7 @@ import springfox.documentation.annotations.ApiIgnore;
 public class StudyController {
   private final StudyService studyService;
 
+  @ApiOperation(value = "스터디 개설")
   @PostMapping
   @LoginRequired
   public ResponseEntity<ResultResponse> createStudy(
@@ -37,6 +38,7 @@ public class StudyController {
     studyService.createStudy(createRequest, loginUser);
     return ResponseEntity.ok(ResultResponse.of(STUDY_CREATE_SUCCESS));
   }
+
 
   @ApiOperation(value = "스터디 조회")
   @GetMapping("{studyId}")

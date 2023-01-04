@@ -11,6 +11,8 @@ import com.techeer.cokkiri.global.result.ResultCode;
 import com.techeer.cokkiri.global.result.ResultResponse;
 import java.util.List;
 import javax.validation.Valid;
+
+import io.swagger.annotations.ApiOperation;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,7 @@ public class CommentController {
   private final CommentService commentService;
   private final StudyService studyService;
 
+  @ApiOperation(value = "댓글 등록")
   @LoginRequired
   @PostMapping
   public ResponseEntity<ResultResponse> createComment(
@@ -37,6 +40,7 @@ public class CommentController {
     return ResponseEntity.ok(ResultResponse.of(ResultCode.REGISTER_COMMENT_SUCCESS));
   }
 
+  @ApiOperation(value = "스터디 id와 스터디 주차로 댓글 목록 조회")
   @GetMapping("/{studyId}")
   public ResponseEntity<ResultResponse> findCommentByStudyIdAndStudyWeek(
       @PathVariable Long studyId, @RequestParam Integer studyWeek) {
