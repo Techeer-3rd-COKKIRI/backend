@@ -40,8 +40,8 @@ public class StudyMapper {
 
     StudyDto.FindResponse studyFindResponse =
         StudyDto.FindResponse.builder()
-            .manager(userMapper.toUserDto(study.getManager()))
-            .users(userMapper.toFindUserDtoList(users))
+            .managerId(study.getManager().getId())
+            .userIDs(users.stream().map(u -> u.getId()).collect(Collectors.toList()))
             .studyName(study.getStudyName())
             .userLimit(study.getUserLimit())
             .introduction(study.getIntroduction())

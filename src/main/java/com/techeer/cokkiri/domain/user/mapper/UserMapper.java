@@ -12,13 +12,17 @@ public class UserMapper {
     return UserDto.RegisterResponse.builder().username(user.getUsername()).build();
   }
 
-  public UserDto.FindResponse toUserDto(User user) {
-    return UserDto.FindResponse.builder()
-        .username(user.getUsername())
-        .nickname(user.getNickname())
-        .bio(user.getBio())
-        .build();
-  }
+  //UserFindResponse가 필요할 때 주석 풀기
+//  public UserDto.FindResponse toUserDto(User user) {
+//    return UserDto.FindResponse.builder()
+//        .username(user.getUsername())
+//        .nickname(user.getNickname())
+//        .bio(user.getBio())
+//        .build();
+//  }
+//  public List<UserDto.FindResponse> toFindUserDtoList(List<User> list) {
+//    return list.stream().map(this::toUserDto).collect(Collectors.toList());
+//  }
 
   public User toEntity(UserDto.RegisterRequest dto) {
     User user =
@@ -36,7 +40,5 @@ public class UserMapper {
     return list.stream().map(this::toDto).collect(Collectors.toList());
   }
 
-  public List<UserDto.FindResponse> toFindUserDtoList(List<User> list) {
-    return list.stream().map(this::toUserDto).collect(Collectors.toList());
-  }
+
 }

@@ -41,8 +41,8 @@ public class StudyDto {
   @AllArgsConstructor(access = AccessLevel.PRIVATE)
   @ApiModel(value = "StudyFindResponse")
   public static class FindResponse {
-    private UserDto.FindResponse manager;
-    private List<UserDto.FindResponse> users;
+    private Long managerId;
+    private List<Long> userIDs;
     private String studyName;
     private Integer userLimit;
     private String introduction;
