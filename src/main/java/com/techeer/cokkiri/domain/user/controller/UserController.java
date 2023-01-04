@@ -1,8 +1,6 @@
 package com.techeer.cokkiri.domain.user.controller;
 
-import static com.techeer.cokkiri.global.result.ResultCode.USER_LOGIN_SUCCESS;
-import static com.techeer.cokkiri.global.result.ResultCode.USER_REGISTRATION_SUCCESS;
-import static com.techeer.cokkiri.global.result.ResultCode.USER_USERNAME_NOT_DUPLICATED;
+import static com.techeer.cokkiri.global.result.ResultCode.*;
 
 import com.techeer.cokkiri.domain.user.dto.UserDto;
 import com.techeer.cokkiri.domain.user.entity.User;
@@ -53,10 +51,10 @@ public class UserController {
   @PostMapping("/login")
   public ResponseEntity<ResultResponse> login(
       @RequestBody @Valid UserDto.LoginRequest userRequest) {
-    boolean isValidUser = loginService.isValidUser(userRequest);
+    boolean isValid = loginService.isValidPassword(userRequest);
 
-    if (isValidUser) {
-      User user = userService.findUserByUsername(userRequest.getUsername());
+    if (isValid) {
+      User user = userService.findByUsername(userRequest.getUsername());
       loginService.login(user.getId());
     }
     return ResponseEntity.ok(ResultResponse.of(USER_LOGIN_SUCCESS));
