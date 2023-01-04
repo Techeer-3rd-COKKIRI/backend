@@ -56,12 +56,4 @@ public class UserDto {
     private Long userId;
   }
 
-//  @Getter
-//  @Builder
-//  @AllArgsConstructor(access = AccessLevel.PRIVATE)
-//  public static class FindResponse {
-//    private String username;
-//    private String nickname;
-//    private String bio;
-//  }
 }
