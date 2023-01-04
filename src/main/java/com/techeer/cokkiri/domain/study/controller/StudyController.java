@@ -39,7 +39,6 @@ public class StudyController {
     return ResponseEntity.ok(ResultResponse.of(STUDY_CREATE_SUCCESS));
   }
 
-
   @ApiOperation(value = "스터디 조회")
   @GetMapping("{studyId}")
   public ResponseEntity<ResultResponse> findStudyByStudyId(@PathVariable Long studyId) {

@@ -55,5 +55,4 @@ public class UserDto {
     private String userName;
     private Long userId;
   }
-
 }
