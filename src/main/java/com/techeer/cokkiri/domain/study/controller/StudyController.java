@@ -29,7 +29,8 @@ public class StudyController {
   @PostMapping
   @LoginRequired
   public ResponseEntity<ResultResponse> createStudy(
-          @Valid @RequestBody StudyDto.CreateRequest createRequest, @ApiIgnore @LoginUser User loginUser) {
+      @Valid @RequestBody StudyDto.CreateRequest createRequest,
+      @ApiIgnore @LoginUser User loginUser) {
     if (studyService.isDuplicatedStudy(createRequest.getStudyName())) {
       throw new StudyDuplicationException();
     }
@@ -49,8 +50,7 @@ public class StudyController {
   public ResponseEntity<ResultResponse> getStudyListWithPagingNewest(
       @PathVariable Integer page, @RequestParam(defaultValue = "20") Integer size) {
     PageRequest pageRequest = PageRequest.of(page, size, Sort.by("id").descending());
-    List<StudyDto.InfoResponse> infoResponseList =
-        studyService.getStudyListWithPaging(pageRequest);
+    List<StudyDto.InfoResponse> infoResponseList = studyService.getStudyListWithPaging(pageRequest);
     return ResponseEntity.ok(ResultResponse.of(STUDY_PAGING_GET_SUCCESS, infoResponseList));
   }
 }
