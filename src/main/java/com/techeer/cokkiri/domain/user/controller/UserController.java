@@ -5,7 +5,7 @@ import static com.techeer.cokkiri.global.result.ResultCode.USER_REGISTRATION_SUC
 import static com.techeer.cokkiri.global.result.ResultCode.USER_USERNAME_NOT_DUPLICATED;
 
 import com.techeer.cokkiri.domain.user.dto.UserDto;
-import com.techeer.cokkiri.domain.user.entity.User;
+import com.techeer.cokkiri.domain.user.exception.InValidPasswordException;
 import com.techeer.cokkiri.domain.user.exception.UserDuplicatedException;
 import com.techeer.cokkiri.domain.user.service.LoginService;
 import com.techeer.cokkiri.domain.user.service.UserService;
@@ -41,9 +41,7 @@ public class UserController {
   @ApiOperation(value = "중복확인")
   @GetMapping("/duplicated/{username}")
   public ResponseEntity<ResultResponse> isDuplicatedUsername(@PathVariable String username) {
-    boolean isDuplicated = userService.isDuplicatedUsername(username);
-
-    if (isDuplicated) {
+    if (userService.isDuplicatedUsername(username)) {
       return ResponseEntity.ok(ResultResponse.of(ResultCode.USER_USERNAME_DUPLICATED, true));
     }
     return ResponseEntity.ok(ResultResponse.of(USER_USERNAME_NOT_DUPLICATED, false));
@@ -53,12 +51,12 @@ public class UserController {
   @PostMapping("/login")
   public ResponseEntity<ResultResponse> login(
       @RequestBody @Valid UserDto.LoginRequest loginRequest) {
-    boolean isValidUser = loginService.isValidUser(loginRequest);
-
-    if (isValidUser) {
-      User user = userService.findUserByUsername(loginRequest.getUsername());
-      loginService.login(user.getId());
+    if (!loginService.isValidUser(loginRequest)) {
+      throw new InValidPasswordException();
     }
-    return ResponseEntity.ok(ResultResponse.of(USER_LOGIN_SUCCESS));
+
+    UserDto.RegisterResponse registerResponse = userService.getUserRegisterDtoByUsername(loginRequest.getUsername());
+    loginService.login(registerResponse.getId());
+    return ResponseEntity.ok(ResultResponse.of(USER_LOGIN_SUCCESS, registerResponse));
   }
 }
