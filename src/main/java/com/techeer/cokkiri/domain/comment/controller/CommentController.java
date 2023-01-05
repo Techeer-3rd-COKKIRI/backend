@@ -9,6 +9,7 @@ import com.techeer.cokkiri.global.annotation.LoginRequired;
 import com.techeer.cokkiri.global.annotation.LoginUser;
 import com.techeer.cokkiri.global.result.ResultCode;
 import com.techeer.cokkiri.global.result.ResultResponse;
+import io.swagger.annotations.ApiOperation;
 import java.util.List;
 import javax.validation.Valid;
 import lombok.AccessLevel;
@@ -25,25 +26,27 @@ public class CommentController {
   private final CommentService commentService;
   private final StudyService studyService;
 
+  @ApiOperation(value = "댓글 등록")
   @LoginRequired
   @PostMapping
   public ResponseEntity<ResultResponse> createComment(
-      @Valid @RequestBody CommentDto.CreateRequest request, @ApiIgnore @LoginUser User user) {
+      @Valid @RequestBody CommentDto.CreateRequest createRequest, @ApiIgnore @LoginUser User user) {
 
-    Study study = studyService.findByStudyId(request.getStudyId());
+    Study study = studyService.findByStudyId(createRequest.getStudyId());
 
-    commentService.registerComment(request, user, study);
+    commentService.registerComment(createRequest, user, study);
 
     return ResponseEntity.ok(ResultResponse.of(ResultCode.REGISTER_COMMENT_SUCCESS));
   }
 
+  @ApiOperation(value = "스터디 id와 스터디 주차로 댓글 목록 조회")
   @GetMapping("/{studyId}")
   public ResponseEntity<ResultResponse> findCommentByStudyIdAndStudyWeek(
       @PathVariable Long studyId, @RequestParam Integer studyWeek) {
 
-    List<CommentDto.ResponseInfo> comments =
+    List<CommentDto.InfoResponse> infoResponseList =
         commentService.findCommentByStudyIdAndStudyWeek(studyId, studyWeek);
 
-    return ResponseEntity.ok(ResultResponse.of(ResultCode.COMMENT_FIND_SUCCESS, comments));
+    return ResponseEntity.ok(ResultResponse.of(ResultCode.COMMENT_FIND_SUCCESS, infoResponseList));
   }
 }

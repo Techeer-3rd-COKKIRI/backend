@@ -21,10 +21,10 @@ public class CommentDto {
   @Getter
   @Builder
   @AllArgsConstructor(access = AccessLevel.PRIVATE)
-  public static class ResponseInfo {
+  public static class InfoResponse {
     private String content;
     private Integer likeCount;
     private Integer dislikeCount;
-    private UserDto.ResponseCommentInfo userCommentInfo;
+    private UserDto.CommentInfoResponse userCommentInfo;
   }
 }

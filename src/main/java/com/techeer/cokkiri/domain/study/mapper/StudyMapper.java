@@ -20,7 +20,7 @@ public class StudyMapper {
     return InfoResponse.builder().id(study.getId()).studyName(study.getStudyName()).build();
   }
 
-  public Study toEntity(Request dto, User manager) {
+  public Study toEntity(CreateRequest dto, User manager) {
     Study study =
         Study.builder()
             .studyName(dto.getStudyName())
@@ -40,8 +40,8 @@ public class StudyMapper {
 
     StudyDto.FindResponse studyFindResponse =
         StudyDto.FindResponse.builder()
-            .manager(userMapper.toUserDto(study.getManager()))
-            .users(userMapper.toFindUserDtoList(users))
+            .managerId(study.getManager().getId())
+            .userIDs(users.stream().map(u -> u.getId()).collect(Collectors.toList()))
             .studyName(study.getStudyName())
             .userLimit(study.getUserLimit())
             .introduction(study.getIntroduction())

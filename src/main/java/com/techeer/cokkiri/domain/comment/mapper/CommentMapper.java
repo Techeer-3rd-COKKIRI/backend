@@ -25,9 +25,9 @@ public class CommentMapper {
     return comment;
   }
 
-  public CommentDto.ResponseInfo toDto(Comment comment) {
-    CommentDto.ResponseInfo info =
-        CommentDto.ResponseInfo.builder()
+  public CommentDto.InfoResponse toDto(Comment comment) {
+    CommentDto.InfoResponse info =
+        CommentDto.InfoResponse.builder()
             .content(comment.getContent())
             .likeCount(comment.getLikeCount())
             .dislikeCount(comment.getDislikeCount())
@@ -36,14 +36,14 @@ public class CommentMapper {
     return info;
   }
 
-  public UserDto.ResponseCommentInfo toDto(User user) {
-    return UserDto.ResponseCommentInfo.builder()
+  public UserDto.CommentInfoResponse toDto(User user) {
+    return UserDto.CommentInfoResponse.builder()
         .userId(user.getId())
         .userName(user.getNickname())
         .build();
   }
 
-  public List<CommentDto.ResponseInfo> toDtoList(List<Comment> comments) {
+  public List<CommentDto.InfoResponse> toDtoList(List<Comment> comments) {
     return comments.stream().map(this::toDto).collect(Collectors.toList());
   }
 }

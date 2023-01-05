@@ -1,8 +1,8 @@
 package com.techeer.cokkiri.domain.study.dto;
 
 import static com.techeer.cokkiri.domain.study.constant.StudyConstants.*;
+import static com.techeer.cokkiri.global.constant.RegExp.STUDYNAME_REGEXP;
 
-import com.techeer.cokkiri.domain.user.dto.UserDto;
 import io.swagger.annotations.ApiModel;
 import java.time.LocalDate;
 import java.util.List;
@@ -24,8 +24,8 @@ public class StudyDto {
   @AllArgsConstructor(access = AccessLevel.PRIVATE)
   @NoArgsConstructor(access = AccessLevel.PRIVATE)
   @ApiModel(value = "StudyCreateRequest")
-  public static class Request {
-    @Pattern(message = "스터디의 이름은 3자 이상 20자 이하여야 합니다.", regexp = "^.{3,20}$")
+  public static class CreateRequest {
+    @Pattern(message = "스터디의 이름은 3자 이상 20자 이하여야 합니다.", regexp = STUDYNAME_REGEXP)
     private String studyName;
 
     @Builder.Default private String studyPassword = DEFAULT_PASSWORD; // 추후 인코딩 추가
@@ -41,8 +41,8 @@ public class StudyDto {
   @AllArgsConstructor(access = AccessLevel.PRIVATE)
   @ApiModel(value = "StudyFindResponse")
   public static class FindResponse {
-    private UserDto.FindResponse manager;
-    private List<UserDto.FindResponse> users;
+    private Long managerId;
+    private List<Long> userIDs;
     private String studyName;
     private Integer userLimit;
     private String introduction;

@@ -22,7 +22,7 @@ public class StudyService {
   private final UserStudyRepository userStudyRepository;
   private final StudyMapper studyMapper;
 
-  public Study createStudy(StudyDto.Request requestDto, User loginUser) { // 스터디 등록
+  public Study createStudy(StudyDto.CreateRequest requestDto, User loginUser) { // 스터디 등록
     Study study = studyMapper.toEntity(requestDto, loginUser);
     Study createdStudy = studyRepository.save(study);
 

@@ -26,22 +26,24 @@ import springfox.documentation.annotations.ApiIgnore;
 public class StudyController {
   private final StudyService studyService;
 
+  @ApiOperation(value = "스터디 개설")
   @PostMapping
   @LoginRequired
   public ResponseEntity<ResultResponse> createStudy(
-      @Valid @RequestBody StudyDto.Request studyRequest, @ApiIgnore @LoginUser User loginUser) {
-    if (studyService.isDuplicatedStudy(studyRequest.getStudyName())) {
+      @Valid @RequestBody StudyDto.CreateRequest createRequest,
+      @ApiIgnore @LoginUser User loginUser) {
+    if (studyService.isDuplicatedStudy(createRequest.getStudyName())) {
       throw new StudyDuplicationException();
     }
-    studyService.createStudy(studyRequest, loginUser);
+    studyService.createStudy(createRequest, loginUser);
     return ResponseEntity.ok(ResultResponse.of(STUDY_CREATE_SUCCESS));
   }
 
   @ApiOperation(value = "스터디 조회")
   @GetMapping("{studyId}")
   public ResponseEntity<ResultResponse> findStudyByStudyId(@PathVariable Long studyId) {
-    StudyDto.FindResponse studyResponse = studyService.findStudyDtoById(studyId);
-    return ResponseEntity.ok(ResultResponse.of(STUDY_GET_SUCCESS, studyResponse));
+    StudyDto.FindResponse findResponse = studyService.findStudyDtoById(studyId);
+    return ResponseEntity.ok(ResultResponse.of(STUDY_GET_SUCCESS, findResponse));
   }
 
   @ApiOperation(value = "스터디 최신순 페이징 조회")
@@ -49,8 +51,7 @@ public class StudyController {
   public ResponseEntity<ResultResponse> getStudyListWithPagingNewest(
       @PathVariable Integer page, @RequestParam(defaultValue = "20") Integer size) {
     PageRequest pageRequest = PageRequest.of(page, size, Sort.by("id").descending());
-    List<StudyDto.InfoResponse> studyInfoResponseList =
-        studyService.getStudyListWithPaging(pageRequest);
-    return ResponseEntity.ok(ResultResponse.of(STUDY_PAGING_GET_SUCCESS, studyInfoResponseList));
+    List<StudyDto.InfoResponse> infoResponseList = studyService.getStudyListWithPaging(pageRequest);
+    return ResponseEntity.ok(ResultResponse.of(STUDY_PAGING_GET_SUCCESS, infoResponseList));
   }
 }

@@ -12,14 +12,6 @@ public class UserMapper {
     return UserDto.RegisterResponse.builder().username(user.getUsername()).build();
   }
 
-  public UserDto.FindResponse toUserDto(User user) {
-    return UserDto.FindResponse.builder()
-        .username(user.getUsername())
-        .nickname(user.getNickname())
-        .bio(user.getBio())
-        .build();
-  }
-
   public User toEntity(UserDto.RegisterRequest dto) {
     User user =
         User.builder()
@@ -34,9 +26,5 @@ public class UserMapper {
 
   public List<UserDto.RegisterResponse> toDtoList(List<User> list) {
     return list.stream().map(this::toDto).collect(Collectors.toList());
-  }
-
-  public List<UserDto.FindResponse> toFindUserDtoList(List<User> list) {
-    return list.stream().map(this::toUserDto).collect(Collectors.toList());
   }
 }

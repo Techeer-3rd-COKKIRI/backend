@@ -21,6 +21,6 @@ public class StudyFixtures {
           .finishDate(DEFAULT_FINISH_DATE)
           .build();
 
-  public static final StudyDto.Request JAVA_STUDY_REQUEST =
-      StudyDto.Request.builder().studyName(JAVA_STUDY_NAME).build();
+  public static final StudyDto.CreateRequest JAVA_STUDY_REQUEST =
+      StudyDto.CreateRequest.builder().studyName(JAVA_STUDY_NAME).build();
 }
