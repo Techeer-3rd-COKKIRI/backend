@@ -1,5 +1,7 @@
 package com.techeer.cokkiri.domain.user.controller;
 
+import static com.techeer.cokkiri.global.result.ResultCode.*;
+
 import com.techeer.cokkiri.domain.user.dto.UserDto;
 import com.techeer.cokkiri.domain.user.entity.User;
 import com.techeer.cokkiri.domain.user.exception.InValidPasswordException;
@@ -19,8 +21,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
-
-import static com.techeer.cokkiri.global.result.ResultCode.*;
 
 @Api(tags = "회원 인증 API")
 @RestController
@@ -59,7 +59,8 @@ public class UserController {
       throw new InValidPasswordException();
     }
 
-    UserDto.RegisterResponse registerResponse = userService.getUserRegisterDtoByUsername(loginRequest.getUsername());
+    UserDto.RegisterResponse registerResponse =
+        userService.getUserRegisterDtoByUsername(loginRequest.getUsername());
     loginService.login(registerResponse.getId());
     return ResponseEntity.ok(ResultResponse.of(USER_LOGIN_SUCCESS, registerResponse));
   }
@@ -79,5 +80,4 @@ public class UserController {
     UserDto.RegisterResponse registerResponse = userMapper.toDto(loginUser);
     return ResponseEntity.ok(ResultResponse.of(GET_LOGIN_USER_SUCCESS, registerResponse));
   }
-
 }
