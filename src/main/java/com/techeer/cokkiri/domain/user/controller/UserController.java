@@ -64,6 +64,14 @@ public class UserController {
     return ResponseEntity.ok(ResultResponse.of(USER_LOGIN_SUCCESS, registerResponse));
   }
 
+  @ApiOperation(value = "로그아웃")
+  @GetMapping("/logout")
+  @LoginRequired
+  public ResponseEntity<ResultResponse> logout() {
+    loginService.logout();
+    return ResponseEntity.ok(ResultResponse.of(USER_LOGOUT_SUCCESS));
+  }
+
   @ApiOperation(value = "로그인 사용자 정보 조회")
   @GetMapping("/login-user")
   @LoginRequired
