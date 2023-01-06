@@ -51,7 +51,7 @@ class GlobalExceptionHandlerTest {
             post("/exception")
                 .content(objectMapper.writeValueAsString(mockRequest))
                 .contentType(MediaType.APPLICATION_JSON))
-        .andExpect(status().isBadRequest())
+        .andExpect(status().is(409))
         .andExpect(jsonPath("$.businessCode").value(INPUT_INVALID_VALUE.getCode()))
         .andDo(print());
   }
