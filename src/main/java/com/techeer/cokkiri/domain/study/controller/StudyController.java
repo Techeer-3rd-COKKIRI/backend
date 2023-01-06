@@ -9,6 +9,7 @@ import com.techeer.cokkiri.domain.user.entity.User;
 import com.techeer.cokkiri.global.annotation.LoginRequired;
 import com.techeer.cokkiri.global.annotation.LoginUser;
 import com.techeer.cokkiri.global.result.ResultResponse;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
 import javax.validation.Valid;
@@ -20,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+@Api(tags = "스터디 API")
 @RestController
 @RequestMapping("api/v1/studies")
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)

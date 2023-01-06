@@ -22,7 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
-@Api(tags = "회원 인증 API")
+@Api(tags = "회원 API")
 @RestController
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 @RequestMapping("/api/v1/users")
