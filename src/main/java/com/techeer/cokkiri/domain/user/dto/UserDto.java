@@ -10,6 +10,7 @@ import lombok.*;
 
 public class UserDto {
 
+  @Getter
   @Builder
   @AllArgsConstructor(access = AccessLevel.PRIVATE)
   public static class RegisterResponse {

@@ -32,6 +32,10 @@ public class UserService {
   }
 
   public User findUserByUsername(String username) {
-    return userRepository.findUserByUsername(username).orElseThrow(UserNotFoundException::new);
+    return userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
+  }
+
+  public UserDto.RegisterResponse getUserRegisterDtoByUsername(String username) {
+    return userMapper.toDto(findUserByUsername(username));
   }
 }
