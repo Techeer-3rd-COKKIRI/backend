@@ -9,6 +9,7 @@ import com.techeer.cokkiri.global.annotation.LoginRequired;
 import com.techeer.cokkiri.global.annotation.LoginUser;
 import com.techeer.cokkiri.global.result.ResultCode;
 import com.techeer.cokkiri.global.result.ResultResponse;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
 import javax.validation.Valid;
@@ -18,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+@Api(tags = "댓글 API")
 @RequestMapping("/api/v1/comments")
 @RestController
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
