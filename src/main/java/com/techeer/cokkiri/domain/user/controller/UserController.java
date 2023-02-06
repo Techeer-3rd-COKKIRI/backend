@@ -26,6 +26,7 @@ import springfox.documentation.annotations.ApiIgnore;
 @RestController
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 @RequestMapping("/api/v1/users")
+@CrossOrigin(origins = "*")
 public class UserController {
   private final UserService userService;
   private final LoginService loginService;
