@@ -17,6 +17,11 @@ public class StudyDto {
   public static class InfoResponse {
     private Long id;
     private String studyName;
+    private Integer currentUserCount;
+    private Integer userLimit;
+    private String introduction;
+    private LocalDate startDate;
+    private LocalDate finishDate;
   }
 
   @Getter

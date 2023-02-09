@@ -17,7 +17,15 @@ public class StudyMapper {
   private UserMapper userMapper = new UserMapper();
 
   public InfoResponse toDto(Study study) {
-    return InfoResponse.builder().id(study.getId()).studyName(study.getStudyName()).build();
+    return InfoResponse.builder()
+        .id(study.getId())
+        .studyName(study.getStudyName())
+        .currentUserCount(study.getStudyUserCount())
+        .userLimit(study.getUserLimit())
+        .startDate(study.getStartDate())
+        .finishDate(study.getFinishDate())
+        .introduction(study.getIntroduction())
+        .build();
   }
 
   public Study toEntity(CreateRequest dto, User manager) {
