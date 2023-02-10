@@ -52,4 +52,10 @@ public class StudyService {
     Page<Study> studyPages = studyRepository.findAll(pageRequest);
     return studyMapper.toDtoList(studyPages).getContent();
   }
+
+  public List<StudyDto.InfoResponse> getStudyListByUserIdWithPaging(
+      Long userId, PageRequest pageRequest) {
+    Page<Study> studyPages = userStudyRepository.findByUserId(userId, pageRequest);
+    return studyMapper.toDtoList(studyPages).getContent();
+  }
 }

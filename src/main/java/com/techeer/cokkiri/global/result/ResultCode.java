@@ -21,6 +21,7 @@ public enum ResultCode {
   STUDY_CREATE_SUCCESS("S001", "스터디 생성 성공"),
   STUDY_GET_SUCCESS("S002", "스터디 조회 성공"),
   STUDY_PAGING_GET_SUCCESS("S003", "스터디 페이징 조회 성공"),
+  USER_STUDY_PAGING_GET_SUCCESS("S004", "유저별 스터디 페이징 조회 성공"),
 
   // comment
   REGISTER_COMMENT_SUCCESS("C001", "댓글 등록 성공"),
