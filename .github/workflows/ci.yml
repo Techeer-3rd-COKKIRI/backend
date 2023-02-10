@@ -48,12 +48,12 @@ jobs:
         with:
           files: '**/build/test-results/test/TEST-*.xml'
 
-      - name: 테스트 실패 시, 실패한 코드 라인에 Check 코멘트를 등록합니다
-        uses: mikepenz/action-junit-report@v3
-        if: always()
-        with:
-          report_paths: '**/build/test-results/test/TEST-*.xml'
-          token: ${{ github.token }}
+#      - name: 테스트 실패 시, 실패한 코드 라인에 Check 코멘트를 등록합니다
+#        uses: mikepenz/action-junit-report@v3
+#        if: always()
+#        with:
+#          report_paths: '**/build/test-results/test/TEST-*.xml'
+#          token: ${{ github.token }}
 
 #      - name: build 실패 시 Slack으로 알립니다
 #        uses: 8398a7/action-slack@v3
