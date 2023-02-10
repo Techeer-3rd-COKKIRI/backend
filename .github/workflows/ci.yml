@@ -3,13 +3,13 @@ name: 'CI'
 on:
   push:
     branches:
-      - chore/githubActionJacocoTest
+      - 'chore/githubActionJacocoTest'
 #      - main
 #      - develop
     paths: 'backend/**'
   pull_request:
     branches:
-      - chore/githubActionJacocoTest
+      - 'chore/githubActionJacocoTest'
 #      - main
 #      - develop
     paths: 'backend/**'
