@@ -6,17 +6,17 @@ on:
       - 'chore/githubActionJacocoTest'
 #      - main
 #      - develop
-    paths: 'backend/**'
+#    paths: 'backend/**'
   pull_request:
     branches:
       - 'chore/githubActionJacocoTest'
 #      - main
 #      - develop
-    paths: 'backend/**'
+#    paths: 'backend/**'
 
-defaults:
-  run:
-    working-directory: backend
+#defaults:
+#  run:
+#    working-directory: backend
 
 jobs:
   build:
