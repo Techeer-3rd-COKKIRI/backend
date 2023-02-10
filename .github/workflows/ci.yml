@@ -42,18 +42,19 @@ jobs:
       - name: Gradle build를 수행합니다
         run: ./gradlew build -P DOCKER_ID=${{ secrets.DOCKER_ID }} -P DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }} -P DOCKER_IMAGE_NAME=${{ secrets.DOCKER_IMAGE_NAME }}
 
-      - name: 테스트 결과를 PR에 코멘트로 등록합니다
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always()
-        with:
-          files: '**/build/test-results/test/TEST-*.xml'
+#      - name: 테스트 결과를 PR에 코멘트로 등록합니다
+#        uses: EnricoMi/publish-unit-test-result-action@v1
+#        if: always()
+#        with:
+#          files: '**/build/test-results/test/TEST-*.xml'
 
       - name: 테스트 커버리지를 PR에 코멘트로 등록합니다
         id: jacoco
         uses: madrapps/jacoco-report@v1.2
         with:
           title: 📝 테스트 커버리지 리포트입니다
-          paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml
+#          paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml
+          paths: /build/reports/jacoco/test/jacocoTestReport.xml
           token: ${{ secrets.GITHUB_TOKEN }}
           min-coverage-overall: 50
           min-coverage-changed-files: 50
