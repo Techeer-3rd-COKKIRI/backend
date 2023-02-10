@@ -7,9 +7,8 @@ import com.techeer.cokkiri.domain.study.mapper.StudyMapper;
 import com.techeer.cokkiri.domain.study.repository.StudyRepository;
 import com.techeer.cokkiri.domain.study.repository.UserStudyRepository;
 import com.techeer.cokkiri.domain.user.entity.User;
-import java.util.List;
-
 import com.techeer.cokkiri.domain.user.entity.UserStudy;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

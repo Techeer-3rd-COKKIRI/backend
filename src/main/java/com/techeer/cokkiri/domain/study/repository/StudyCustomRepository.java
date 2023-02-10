@@ -5,5 +5,5 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface StudyCustomRepository {
-    Page<Study> getUserStudy(Long userId, Pageable pageable);
+  Page<Study> getUserStudy(Long userId, Pageable pageable);
 }
