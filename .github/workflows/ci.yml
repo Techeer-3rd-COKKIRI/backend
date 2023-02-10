@@ -47,10 +47,10 @@ jobs:
           DOCKER_ID: ${{ secrets.DOCKER_ID }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           DOCKER_IMAGE_NAME: ${{ secrets.DOCKER_IMAGE_NAME }}
-          shell: bash
+        shell: bash
         run: |
           mkdir -p ~/.gradle/
-          echo "::set-env name=GRADLE_USER_HOME::$HOME/.gradle"
+          echo "::set-env name=GRADLE_USER_HOME::$HOME/.gradle" >> $GITHUB_ENV
           echo ${DOCKER_ID} > ~/.gradle/gradle.properties
           echo ${DOCKER_PASSWORD} > ~/.gradle/gradle.properties
           echo ${DOCKER_IMAGE_NAME} > ~/.gradle/gradle.properties
