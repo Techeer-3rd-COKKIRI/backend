@@ -4,7 +4,7 @@ import com.techeer.cokkiri.domain.study.entity.Study;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface StudyRepository extends JpaRepository<Study, Long> {
+public interface StudyRepository extends JpaRepository<Study, Long>, StudyCustomRepository {
   boolean existsByStudyName(String studyName);
 
   Optional<Study> findById(Long studyId);

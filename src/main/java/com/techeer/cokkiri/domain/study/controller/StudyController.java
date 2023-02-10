@@ -56,4 +56,17 @@ public class StudyController {
     List<StudyDto.InfoResponse> infoResponseList = studyService.getStudyListWithPaging(pageRequest);
     return ResponseEntity.ok(ResultResponse.of(STUDY_PAGING_GET_SUCCESS, infoResponseList));
   }
+
+  @ApiOperation(value = "유저별 스터디 조회")
+  @GetMapping("/user/{page}")
+  @LoginRequired
+  public ResponseEntity<ResultResponse> getUserStudies(
+      @ApiIgnore @LoginUser User loginUser,
+      @PathVariable Integer page,
+      @RequestParam(defaultValue = "8") Integer size) {
+    PageRequest pageRequest = PageRequest.of(page, size, Sort.by("id").descending());
+    List<StudyDto.InfoResponse> infoResponseList =
+        studyService.getStudyListByUserIdWithPaging(loginUser.getId(), pageRequest);
+    return ResponseEntity.ok(ResultResponse.of(USER_STUDY_PAGING_GET_SUCCESS, infoResponseList));
+  }
 }
