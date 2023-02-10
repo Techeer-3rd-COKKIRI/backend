@@ -67,4 +67,8 @@ public class Study extends BaseEntity {
     this.startDate = startDate;
     this.finishDate = finishDate;
   }
+
+  public Integer getStudyUserCount() {
+    return users.size();
+  }
 }
