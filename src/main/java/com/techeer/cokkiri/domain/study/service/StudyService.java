@@ -8,6 +8,8 @@ import com.techeer.cokkiri.domain.study.repository.StudyRepository;
 import com.techeer.cokkiri.domain.study.repository.UserStudyRepository;
 import com.techeer.cokkiri.domain.user.entity.User;
 import java.util.List;
+
+import com.techeer.cokkiri.domain.user.entity.UserStudy;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,6 +27,8 @@ public class StudyService {
   public Study createStudy(StudyDto.CreateRequest requestDto, User loginUser) { // 스터디 등록
     Study study = studyMapper.toEntity(requestDto, loginUser);
     Study createdStudy = studyRepository.save(study);
+    UserStudy userStudy = UserStudy.builder().study(createdStudy).user(loginUser).build();
+    userStudyRepository.save(userStudy);
 
     return createdStudy;
   }
@@ -55,7 +59,7 @@ public class StudyService {
 
   public List<StudyDto.InfoResponse> getStudyListByUserIdWithPaging(
       Long userId, PageRequest pageRequest) {
-    Page<Study> studyPages = userStudyRepository.findByUserId(userId, pageRequest);
+    Page<Study> studyPages = studyRepository.getUserStudy(userId, pageRequest);
     return studyMapper.toDtoList(studyPages).getContent();
   }
 }
