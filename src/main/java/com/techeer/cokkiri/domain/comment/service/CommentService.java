@@ -21,11 +21,13 @@ public class CommentService {
 
   private final CommentMapper commentMapper;
 
-  public void registerComment(CommentDto.CreateRequest commentDto, User user, Study study) {
+  public Comment registerComment(CommentDto.CreateRequest commentDto, User user, Study study) {
 
     Comment comment = commentMapper.toEntity(commentDto, user, study);
 
-    commentRepository.save(comment);
+    Comment createComment = commentRepository.save(comment);
+
+    return createComment;
   }
 
   public List<CommentDto.InfoResponse> findCommentByStudyIdAndStudyWeek(
