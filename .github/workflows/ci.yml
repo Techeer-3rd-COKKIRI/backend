@@ -42,11 +42,11 @@ jobs:
       - name: Gradle build를 수행합니다
         run: ./gradlew build -P DOCKER_ID=${{ secrets.DOCKER_ID }} -P DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }} -P DOCKER_IMAGE_NAME=${{ secrets.DOCKER_IMAGE_NAME }}
 
-      #      - name: 테스트 결과를 PR에 코멘트로 등록합니다
-      #        uses: EnricoMi/publish-unit-test-result-action@v1
-      #        if: always()
-      #        with:
-      #          files: '**/build/test-results/test/TEST-*.xml'
+      - name: 테스트 결과를 PR에 코멘트로 등록합니다
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: '**/build/test-results/test/TEST-*.xml'
 
       - name: 테스트 커버리지를 PR에 코멘트로 등록합니다
         id: jacoco
