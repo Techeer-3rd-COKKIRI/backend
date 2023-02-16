@@ -25,7 +25,7 @@ import springfox.documentation.annotations.ApiIgnore;
 @RestController
 @RequestMapping("api/v1/studies")
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-//@CrossOrigin(origins = "*")
+// @CrossOrigin(origins = "*")
 public class StudyController {
   private final StudyService studyService;
 
