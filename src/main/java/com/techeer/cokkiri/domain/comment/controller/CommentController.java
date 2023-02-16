@@ -23,7 +23,7 @@ import springfox.documentation.annotations.ApiIgnore;
 @RequestMapping("/api/v1/comments")
 @RestController
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class CommentController {
 
   private final CommentService commentService;
