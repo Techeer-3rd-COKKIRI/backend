@@ -21,17 +21,21 @@ public class UserService {
     return userRepository.existsByUsername(username);
   }
 
-  public void register(UserDto.RegisterRequest requestDto) {
+  public User register(UserDto.RegisterRequest requestDto) {
     User user = userMapper.toEntity(requestDto);
     user.setEncryptedPassword(passwordUtil.encodingPassword(user.getPassword()));
-    userRepository.save(user);
+    User newUser = userRepository.save(user);
+
+    return newUser;
   }
 
   public User findUserById(long id) {
     return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
   }
 
-  public User findUserByUsername(String username) {
-    return userRepository.findUserByUsername(username).orElseThrow(UserNotFoundException::new);
+  public User findByUsername(String username) {
+    return userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
   }
+
+
 }
