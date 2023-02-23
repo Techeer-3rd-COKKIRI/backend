@@ -22,6 +22,7 @@ public class StudyDto {
     private String introduction;
     private LocalDate startDate;
     private LocalDate finishDate;
+    private String studyStatus;
   }
 
   @Getter
@@ -53,5 +54,6 @@ public class StudyDto {
     private String introduction;
     private Integer studyCycle;
     private LocalDate finishDate;
+    private String studyStatus;
   }
 }
