@@ -26,6 +26,9 @@ public enum ResultCode {
   // comment
   REGISTER_COMMENT_SUCCESS("C001", "댓글 등록 성공"),
   COMMENT_FIND_SUCCESS("C002", "댓글 찾기 성공"),
+
+  IMAGE_UPLOAD_SUCCESS("I001", "이미지 업로드 성공"),
+  IMAGE_UPLOAD_FAILED("I001", "이미지 업로드 실패"),
   ;
 
   private final String code;
