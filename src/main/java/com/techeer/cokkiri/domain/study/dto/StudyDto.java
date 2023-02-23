@@ -53,6 +53,7 @@ public class StudyDto {
     private Integer userLimit;
     private String introduction;
     private Integer studyCycle;
+    private LocalDate startDate;
     private LocalDate finishDate;
     private String studyStatus;
   }

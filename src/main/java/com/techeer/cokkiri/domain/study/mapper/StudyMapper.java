@@ -55,6 +55,7 @@ public class StudyMapper {
             .userLimit(study.getUserLimit())
             .introduction(study.getIntroduction())
             .studyCycle(study.getStudyCycle())
+            .startDate(study.getStartDate())
             .finishDate(study.getFinishDate())
             .studyStatus(study.getStudyStatus().getStatus())
             .build();
