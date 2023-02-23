@@ -25,6 +25,7 @@ public class StudyMapper {
         .startDate(study.getStartDate())
         .finishDate(study.getFinishDate())
         .introduction(study.getIntroduction())
+        .studyStatus(study.getStudyStatus().getStatus())
         .build();
   }
 
@@ -55,6 +56,7 @@ public class StudyMapper {
             .introduction(study.getIntroduction())
             .studyCycle(study.getStudyCycle())
             .finishDate(study.getFinishDate())
+            .studyStatus(study.getStudyStatus().getStatus())
             .build();
 
     return studyFindResponse;
