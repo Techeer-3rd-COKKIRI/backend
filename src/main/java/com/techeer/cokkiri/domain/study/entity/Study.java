@@ -71,4 +71,14 @@ public class Study extends BaseEntity {
   public Integer getStudyUserCount() {
     return users.size();
   }
+
+  public StudyStatus getStudyStatus() {
+    if (LocalDate.now().isBefore(startDate)) {
+      return StudyStatus.RECRUITING;
+    }
+    if (LocalDate.now().isAfter(finishDate)) {
+      return StudyStatus.FINISH;
+    }
+    return StudyStatus.IN_PROGRESS;
+  }
 }
