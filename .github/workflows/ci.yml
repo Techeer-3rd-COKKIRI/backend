@@ -99,6 +99,6 @@ jobs:
       - name: SonarQube Scan
         uses: kitabisa/sonarqube-action@master
         with:
-          host: ${{ secrets.SONAR_HOST }}
+          host: ${{ secrets.SONAR_HOST_URL }}
           login: ${{ secrets.SONAR_TOKEN }}
           projectBaseDir: '/github/workspace'
