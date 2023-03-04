@@ -26,3 +26,15 @@ services:
       SPRING_DATASOURCE_URL: ${POSTGRES_URL}
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
 #    volumes:   프론트랑 합친 후에 볼륨 설정 예정
+
+  sonarqube:
+    container_name: sonarqube
+    image: sonarqube:latest
+    ports:
+      - "9000:9000"
+    depends_on:
+      - postgresql
+    environment:
+      SONARQUBE_JDBC_URL: ${POSTGRES_URL}
+      SONARQUBE_JDBC_USERNAME: ${POSTGRES_USER}
+      SONARQUBE_JDBC_PASSWORD: ${POSTGRES_PASSWORD}
