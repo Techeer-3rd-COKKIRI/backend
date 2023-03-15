@@ -19,4 +19,4 @@ COKKIRI Backend Repository
 - pull request, issue(기능구현, 리팩토링, 환경설정, 오류수정) 템플릿
 - lombok
 
-*** extends kim1387 ***
+extends [kim1387](https://github.com/kim1387)
