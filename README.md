@@ -27,9 +27,9 @@
 
 ```json
 {
-	"businessCode": "S001",
-	"errorMessage": "스터디의 이름이 중복됨",
-	"errors": null
+  "businessCode": "S001",
+  "errorMessage": "스터디의 이름이 중복됨",
+  "errors": null
 }
 ```
 
