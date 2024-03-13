@@ -19,7 +19,7 @@
   "data": {
     "id": 1,
     "username": "string1"
-  }s
+  }
 }
 ```
 
