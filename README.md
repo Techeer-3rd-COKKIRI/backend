@@ -1,22 +1,52 @@
-# Backend
-COKKIRI Backend Repository
+## 기술 스택
 
-서비스 화면
-<img width="869" alt="image" src="https://user-images.githubusercontent.com/108508730/205554070-50ab530c-0331-4d09-b0bd-63b98f032507.png">
+![image](https://github.com/Techeer-3rd-COKKIRI/.github/assets/108508730/c512e964-a27b-4de9-bd3b-f2f33ee5c893)
 
-# 현재 완료된 초기 세팅
-- PostgreSQL
-- H2 및 테스트용 application.yml
-- JIB(gradle.properties을 활용)
-- DockerCompose
-- Swagger
-- GlobalErrorHandler 등 에러관련
-- ResultResponse 등 결과 반환 관련
-- BaseEntity, AuditingConfig(모든 엔티티에 생성시간, 업데이트시간, 삭제여부 컬럼 추가)
-- 서브모듈로 민감한 정보를 담고있는 application.yml 관리
-- jacoco
-- google java format github action
-- pull request, issue(기능구현, 리팩토링, 환경설정, 오류수정) 템플릿
-- lombok
+---
+
+## 백엔드 성과
+
+### **API들** Swagger 문서화 완료
+
+![image](https://github.com/Techeer-3rd-COKKIRI/.github/assets/108508730/ad119a2e-2619-4dbd-848c-b928c6d33b9a)
+
+### 응답 객체 통합 및 응답 코드 관리
+
+```json
+{
+  "code": "U004",
+  "message": "회원 로그인 성공",
+  "data": {
+    "id": 1,
+    "username": "string1"
+  }s
+}
+```
+
+### GlobalExceptionHandler를 통한 ErrorHandling 및 예외 코드 관리
+
+```json
+{
+	"businessCode": "S001",
+	"errorMessage": "스터디의 이름이 중복됨",
+	"errors": null
+}
+```
+
+### QueryDSL을 이용하여 N+1 이슈 해결 및 동적 쿼리 작성
+
+![image](https://github.com/Techeer-3rd-COKKIRI/.github/assets/108508730/08361b54-c557-47f4-8971-384ad79d4ba3)
+
+### JIB를 통해 도커 이미지 최적화 및 빌드시간 단축
+
+![image](https://github.com/Techeer-3rd-COKKIRI/.github/assets/108508730/c122e214-f604-4e68-b8ea-b0a75e1f5b86)
+
+### UnitTest 작성 및 Jacoco를 통해 CodeCoverage관리
+
+![image](https://github.com/Techeer-3rd-COKKIRI/.github/assets/108508730/f56a58b2-16d6-43fe-b8ec-ae90917fcc0d)
+
+### GithubAction과 jacoco를 이용하여 Pull Request시 테스트 커버리지를 체크
+
+![image](https://github.com/Techeer-3rd-COKKIRI/.github/assets/108508730/16992215-1061-4f41-9ad0-9be1fb242ed9)
 
 extends [kim1387](https://github.com/kim1387)
